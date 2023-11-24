@@ -1,0 +1,11 @@
+.wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.1em;
+  color: var(--black);
+}
+@media (hover: hover) {
+  .wrap {
+    cursor: pointer;
+  }
+}

@@ -1,0 +1,23 @@
+.wrap {
+  border: 5px solid var(--white);
+  background-color: var(--gray);
+  color: var(--black);
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
+  gap: 1em;
+  padding: 0.3em;
+  transition: all 250ms ease-in-out;
+  line-height: 1.3em;
+}
+.outline {
+  border: 5px solid var(--orange2);
+}
+/* .icon {
+  z-index: 1;
+  filter: invert(11%) sepia(7%) saturate(0%) hue-rotate(196deg) brightness(94%)
+    contrast(76%);
+} */
+.wrap:hover {
+  border: 5px solid var(--dark_blue2);
+}

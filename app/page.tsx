@@ -1,95 +1,54 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+import styles from "./page.module.css";
+import ButtonHome from "@/components/buttons/home/ButtonHome";
+import contact from "@/public/contact.svg";
+import mail from "@/public/mail.svg";
+import black_phone from "@/public/black_phone.svg";
+import Banner from "@/components/banner/Banner";
 
 export default function Home() {
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <>
+      <div className={styles.wideWrap}>
+        <div className={styles.wrap}>
+          <div className={styles.content}>
+            <h2>Hingyi Norbert</h2>
+            <h1>Meleg Burkoló</h1>
+            <div className={styles.btns}>
+              <ButtonHome
+                img={contact}
+                label="Kapcsolat"
+                path="/contact"
+                outline={true}
+              />
+              <ButtonHome
+                img={black_phone}
+                label="06 20 123 4567"
+                path="/contact"
+                outline={false}
+              />
+              <ButtonHome
+                img={mail}
+                label="Tervek és képek kérése"
+                path="/contact"
+                outline={false}
+              />
+            </div>
+
+            <strong>
+              Hingyi Norbert pest megyei meleg burkoló 5 év tapasztalattal.
+            </strong>
+            <ul>
+              <li>Magán és céges megrendelőknek</li>
+              <li>Bármilyen bonyolultságú és méretű felület burkolása</li>
+              <li>Főként Budapesten és körzetében elérhető</li>
+            </ul>
+          </div>
         </div>
+
+        <span className={styles.test}>
+          <Banner />
+        </span>
       </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
+    </>
+  );
 }

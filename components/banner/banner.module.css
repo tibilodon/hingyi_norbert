@@ -1,0 +1,19 @@
+.wrap {
+  background-color: var(--light_blue2);
+  /* background-color: var(--orange1); */
+  padding: 1em 2em 0 2.5em;
+  height: var(--page_height);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.wrap h2 {
+  font-size: 32px;
+}
+.content {
+  /* border: 2px solid aliceblue; */
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+  padding: 1em 0 1em 0;
+}

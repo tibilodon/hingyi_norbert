@@ -1,0 +1,32 @@
+.wrap {
+  background-color: var(--white);
+  /* border: 2px solid rgb(204, 23, 23); */
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 3em 0 3em;
+  height: 3em;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+  /* position: fixed; */
+  /* top: 3em; */
+}
+/* .icon {
+  filter: invert(47%) sepia(50%) saturate(6942%) hue-rotate(352deg)
+    brightness(98%) contrast(107%);
+} */
+
+.sidebar {
+  width: 70%;
+  align-self: center;
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: 400ms ease-in-out;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.active {
+  grid-template-rows: 1fr;
+}
+.content {
+  overflow: hidden;
+}
