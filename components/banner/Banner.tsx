@@ -20,7 +20,7 @@ const Banner = () => {
           <BannerBox
             img={tape}
             label="Nagy és kis munkálatok"
-            text="Kérj ingyenes árajánlatot mérettől függetlenül"
+            text="Kérjen ingyenes árajánlatot mérettől függetlenül"
           />
           <BannerBox
             img={van}

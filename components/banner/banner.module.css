@@ -1,6 +1,7 @@
 .wrap {
-  background-color: var(--light_blue2);
+  /* background-color: var(--light_blue2); */
   /* background-color: var(--orange1); */
+  background-color: var(--orange2);
   padding: 1em 2em 0 2.5em;
   height: var(--page_height);
   display: flex;
@@ -14,6 +15,6 @@
   /* border: 2px solid aliceblue; */
   display: flex;
   flex-direction: column;
-  gap: 2em;
+  gap: 1.5em;
   padding: 1em 0 1em 0;
 }

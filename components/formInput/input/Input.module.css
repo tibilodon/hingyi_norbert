@@ -1,0 +1,20 @@
+.wrap {
+  width: 100%;
+  border-bottom: 1px solid rgba(238, 241, 245, 0.5);
+}
+.wrap input {
+  background-color: #333;
+  border: none;
+  color: #fff;
+  caret-color: #fff;
+}
+.wrap input::placeholder {
+  color: #fff;
+}
+
+.wrap input:focus::-webkit-input-placeholder {
+  color: var(--gray);
+}
+.wrap input:focus {
+  outline: none;
+}

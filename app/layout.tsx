@@ -11,6 +11,9 @@ const openSans = Open_Sans({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Burkoló - Hingyi Norbert",
   description: "Hingyi Norbert - Burkoló oldala",
+  // icons: {
+  //   icon: "./favicon.ico",
+  // },
 };
 
 export default function RootLayout({

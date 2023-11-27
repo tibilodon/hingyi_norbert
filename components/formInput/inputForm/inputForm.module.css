@@ -1,0 +1,29 @@
+.wrap {
+  height: 100%;
+}
+.wrap form {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1em;
+  align-items: center;
+}
+
+.wrap form input {
+  caret-color: var(--inactive);
+  outline: none;
+  border: none;
+  width: 100%;
+}
+.inputWrap {
+  width: 60%;
+  border-bottom: 1px solid var(--black);
+}
+.textarea {
+  width: 60%;
+}
+
+.btn {
+  padding: 1em;
+}

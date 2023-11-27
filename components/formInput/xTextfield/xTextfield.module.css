@@ -1,0 +1,14 @@
+.wrap {
+  width: 100%;
+}
+.wrap textarea {
+  border: 1px solid var(--gray);
+  border-radius: 10px;
+  overflow: hidden;
+  padding: 1em;
+  width: 100%;
+}
+
+.wrap textarea:focus {
+  border: 1px solid var(--black);
+}

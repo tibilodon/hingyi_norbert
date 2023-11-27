@@ -23,9 +23,10 @@ export default function Home() {
               <ButtonHome
                 img={black_phone}
                 label="06 20 123 4567"
-                path="/contact"
                 outline={false}
               />
+
+              {/*TODO:links to email app, highly inconvenient - nav to contact form and add template text*/}
               <ButtonHome
                 img={mail}
                 label="Tervek és képek kérése"

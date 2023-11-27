@@ -1,3 +1,7 @@
 .wrap {
-  border: 2px solid red;
+  min-height: var(--page_height);
+  background-color: var(--black);
+  color: var(--white);
+  display: flex;
+  flex-direction: column;
 }
