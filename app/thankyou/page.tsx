@@ -1,9 +1,10 @@
+import { NextPage } from "next";
 import styles from "./page.module.css";
 
-// type Props = {
-//   text?: string;
-// };
-export default function ThankYou(text: string) {
+type Props = {
+  text?: string;
+};
+const ThankYou: NextPage<Props> = ({ text }) => {
   return (
     <>
       <div className={styles.wrap}>
@@ -12,4 +13,5 @@ export default function ThankYou(text: string) {
       </div>
     </>
   );
-}
+};
+export default ThankYou;
