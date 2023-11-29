@@ -32,7 +32,7 @@ export default function Portfolio() {
         <ImgModal imgArr={imgArr} descArr={descArr} />
       </div>
       <div className={styles.quote}>
-        <h1>Ingyenes árajánlat érdekében üzenjen nekem</h1>
+        <h2>Ingyenes árajánlatot szeretnék</h2>
         <Link className={styles.contact} href={"/contact"}>
           <RegularButton label="Árajánlatot kérek" />
         </Link>
