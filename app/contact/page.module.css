@@ -4,4 +4,17 @@
   color: var(--white);
   display: flex;
   flex-direction: column;
+  align-items: center;
+  width: 100%;
+  /* gap: 2em; */
+  justify-content: space-around;
+  padding: 0.5em 2em;
+  text-align: center;
+}
+
+.wrap h4 {
+  margin-bottom: 1em;
+}
+.form {
+  width: 85%;
 }

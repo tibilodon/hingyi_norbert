@@ -58,7 +58,6 @@ const InputForm = () => {
       if (response.ok) {
         setIsLoading(false);
 
-        console.log("gg");
         router.push("/thankyou");
       }
     } catch (error) {
@@ -83,43 +82,32 @@ const InputForm = () => {
   return (
     <>
       <div className={styles.wrap}>
-        <div className={styles.heroText}>
-          <h2 className={styles.aboveName}>
-            Fuel Your Brand&rsquo;s text with{" "}
-          </h2>
-          <h2 className={styles.name}>Busy Ant LLC</h2>
-          <p>
-            You will get a response within 24 hours. We will explain in details
-            how we can help you fuel and grow your brand within the stated
-            title.
-          </p>
-        </div>
         <div className={styles.form}>
-          <form className={styles.form} onSubmit={submitHandler}>
+          <form onSubmit={submitHandler}>
             {/*email alert*/}
 
             <Input
               type={"text"}
-              placeholder={"Name"}
+              placeholder={"Név"}
               onChangeHandler={onChangeHandler}
               id={"name"}
             />
 
             <Input
               type={"email"}
-              placeholder={"Email address"}
+              placeholder={"E-mail cím"}
               id={"email"}
               onChangeHandler={onChangeHandler}
             />
             <Input
               type={"tel"}
-              placeholder={"Phone number"}
+              placeholder={"Telefonszám"}
               onChangeHandler={onChangeHandler}
               id={"phone"}
             />
             <Input
               type={"text"}
-              placeholder={"Title"}
+              placeholder={"Tárgy"}
               onChangeHandler={onChangeHandler}
               id={"title"}
             />
@@ -127,7 +115,7 @@ const InputForm = () => {
               id={"text"}
               val={form.text}
               onChangeHandler={onChangeHandler}
-              placeHolder={"Text"}
+              placeHolder={"Üzenet"}
             />
             <div className={styles.submit}>
               {/* <button type="submit">Send Enquiry</button> */}

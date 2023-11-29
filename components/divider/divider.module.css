@@ -1,0 +1,5 @@
+.wrap {
+  align-self: flex-start;
+  border-bottom: 5px solid var(--orange2);
+  width: 20%;
+}

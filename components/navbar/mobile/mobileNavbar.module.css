@@ -11,10 +11,9 @@
   /* position: fixed; */
   /* top: 3em; */
 }
-/* .icon {
-  filter: invert(47%) sepia(50%) saturate(6942%) hue-rotate(352deg)
-    brightness(98%) contrast(107%);
-} */
+.wrap img {
+  cursor: pointer;
+}
 
 .sidebar {
   width: 70%;

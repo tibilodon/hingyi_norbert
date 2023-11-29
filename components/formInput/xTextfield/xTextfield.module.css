@@ -12,3 +12,6 @@
 .wrap textarea:focus {
   border: 1px solid var(--black);
 }
+.wrap textarea::placeholder {
+  color: var(--gray);
+}

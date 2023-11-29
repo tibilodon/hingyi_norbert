@@ -1,18 +1,24 @@
 .wrap {
   width: 100%;
-  border-bottom: 1px solid rgba(238, 241, 245, 0.5);
+  display: flex;
+  justify-content: center;
 }
 .wrap input {
-  background-color: #333;
+  width: 100%;
+  /* background-color: #333;
   border: none;
   color: #fff;
-  caret-color: #fff;
+  caret-color: #fff; */
+  border: 1px solid var(--gray);
+  border-radius: 10px;
+  overflow: hidden;
+  padding: 1em;
 }
 .wrap input::placeholder {
-  color: #fff;
+  color: var(--gray);
 }
 
-.wrap input:focus::-webkit-input-placeholder {
+.wrap input::placeholder {
   color: var(--gray);
 }
 .wrap input:focus {

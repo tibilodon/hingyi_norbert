@@ -26,13 +26,6 @@ const XTextfield: React.FunctionComponent<Props> = ({
     }
   }, [val]);
 
-  // const valSetter = useCallback(
-  //   (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-  //     setVal({ ...val, [formVal]: e.currentTarget.value });
-  //   },
-  //   [val, setVal, formVal]
-  // );
-
   return (
     <>
       <div className={styles.wrap}>
@@ -43,7 +36,7 @@ const XTextfield: React.FunctionComponent<Props> = ({
           //   value={val}
           placeholder={placeHolder}
           onChange={onChangeHandler}
-          rows={1}
+          rows={3}
         />
       </div>
     </>

@@ -12,7 +12,7 @@ export default function Home() {
         <div className={styles.wrap}>
           <div className={styles.content}>
             <h2>Hingyi Norbert</h2>
-            <h1>Meleg Burkoló</h1>
+            <h1>Burkoló</h1>
             <div className={styles.btns}>
               <ButtonHome
                 img={contact}
@@ -36,7 +36,7 @@ export default function Home() {
             </div>
 
             <strong>
-              Hingyi Norbert pest megyei meleg burkoló 5 év tapasztalattal.
+              Hingyi Norbert Pest megyei burkoló 5 év tapasztalattal.
             </strong>
             <ul>
               <li>Magán és céges megrendelőknek</li>
