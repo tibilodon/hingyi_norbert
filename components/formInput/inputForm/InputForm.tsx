@@ -75,7 +75,11 @@ const InputForm = () => {
   }
 
   if (isLoading) {
-    return <Loading />;
+    return (
+      <>
+        <Loading />
+      </>
+    );
   }
   return (
     <>
