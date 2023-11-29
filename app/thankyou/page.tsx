@@ -1,17 +1,12 @@
-import { NextPage } from "next";
 import styles from "./page.module.css";
 
-type Props = {
-  text?: string;
-};
-const ThankYou: NextPage<Props> = ({ text }) => {
+export default function ThankYou() {
   return (
     <>
       <div className={styles.wrap}>
-        <h1>Thank you!</h1>
-        {text && <p>{text}</p>}
+        <h1>Köszönöm!</h1>
+        <h3>Levelére hamarosan válaszolni fogok.</h3>
       </div>
     </>
   );
-};
-export default ThankYou;
+}
