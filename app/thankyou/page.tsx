@@ -1,9 +1,9 @@
 import styles from "./page.module.css";
 
-type Props = {
-  text?: string;
-};
-export default function ThankYou({ text }: Props) {
+// type Props = {
+//   text?: string;
+// };
+export default function ThankYou(text: string) {
   return (
     <>
       <div className={styles.wrap}>
