@@ -1,6 +1,8 @@
 .wrap {
   min-height: var(--page_height);
   display: flex;
+  flex-direction: column;
+  gap: 1em;
   justify-content: center;
   align-items: center;
 }

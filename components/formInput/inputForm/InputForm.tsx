@@ -56,8 +56,6 @@ const InputForm = () => {
         body: JSON.stringify(data),
       });
       if (response.ok) {
-        setIsLoading(false);
-
         router.push("/thankyou");
       }
     } catch (error) {
