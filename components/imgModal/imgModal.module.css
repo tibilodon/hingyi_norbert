@@ -3,6 +3,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 0.2em;
 }
 /* .wrap {
   border: 2px solid red;
@@ -99,4 +100,10 @@
 }
 .close:hover {
   width: 35px;
+}
+@media (min-width: 768px) {
+  .selectedWrap {
+    display: flex;
+    justify-content: space-around;
+  }
 }

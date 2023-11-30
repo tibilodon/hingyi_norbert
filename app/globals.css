@@ -69,3 +69,16 @@ body {
     transform: rotate(360deg);
   }
 }
+
+.regularNav {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .mobileNav {
+    display: none;
+  }
+  .regularNav {
+    display: block;
+  }
+}

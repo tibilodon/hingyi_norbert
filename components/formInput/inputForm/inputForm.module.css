@@ -2,6 +2,10 @@
   height: 100%;
   width: 100%;
 }
+.formWrap {
+  display: flex;
+  justify-content: center;
+}
 .wrap form {
   height: 100%;
   width: 100%;
@@ -11,4 +15,9 @@
   justify-content: space-between;
   gap: 1em;
   align-items: center;
+}
+@media (min-width: 768px) {
+  .wrap form {
+    width: 70%;
+  }
 }

@@ -44,24 +44,25 @@ const ImgModal: React.FunctionComponent<Props> = ({ imgArr, descArr }) => {
 
   return (
     <>
-      {/*TODO:*/}
-      {imgArr.map((img: string, i: number) => {
-        return (
-          <div
-            className={styles.selectedImg}
-            key={i}
-            onClick={() => selectedHandler(i)}
-          >
-            <Image
-              width={200}
-              height={250}
-              src={img}
-              alt={`portfolio image number ${i}`}
-            />
-            <h4>{descArr[i]}</h4>
-          </div>
-        );
-      })}
+      <div className={styles.selectedWrap}>
+        {imgArr.map((img: string, i: number) => {
+          return (
+            <div
+              className={styles.selectedImg}
+              key={i}
+              onClick={() => selectedHandler(i)}
+            >
+              <Image
+                width={200}
+                height={250}
+                src={img}
+                alt={`portfolio image number ${i}`}
+              />
+              <h4>{descArr[i]}</h4>
+            </div>
+          );
+        })}
+      </div>
 
       {/* 
       <!-- The Modal -->*/}

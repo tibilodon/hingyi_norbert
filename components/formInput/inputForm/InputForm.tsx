@@ -84,7 +84,7 @@ const InputForm = () => {
   return (
     <>
       <div className={styles.wrap}>
-        <div className={styles.form}>
+        <div className={styles.formWrap}>
           <form onSubmit={submitHandler}>
             {/*email alert*/}
 

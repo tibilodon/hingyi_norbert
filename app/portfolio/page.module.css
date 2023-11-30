@@ -5,13 +5,23 @@
   padding: 0.5em 2em;
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
   gap: 1em;
 }
-.quote {
-  background-color: var(--white);
-  text-align: center;
-  padding: 0.5em 2em;
+
+.wrap span {
   display: flex;
   flex-direction: column;
-  gap: 0.5em;
+  gap: 1em;
+}
+.outer {
+  height: var(--page_height);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+@media (min-width: 768px) {
+  .wrap {
+    height: 75vh;
+  }
 }

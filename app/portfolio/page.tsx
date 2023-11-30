@@ -9,6 +9,7 @@ import RegularButton from "@/components/buttons/regular/RegularButton";
 import Link from "next/link";
 
 import { Metadata } from "next";
+import Quote from "@/components/quote/Quote";
 export const metadata: Metadata = {
   title: "Portfólió - Burkoló | Hingyi Norbert",
   description: "Hingyi Norbert - Burkoló oldala",
@@ -35,21 +36,20 @@ export default function Portfolio() {
   ];
   return (
     <>
-      <div className={styles.wrap}>
-        <h1>Burkolói munkák</h1>
-        <Divider />
-        <p>
-          A munkám során mindig a minőségre törekszem és arra, hogy az elkészült
-          felület tökéletesen nézzen ki és időtálló legyen.
-        </p>
+      <div className={styles.outer}>
+        <div className={styles.wrap}>
+          <span>
+            <h1>Burkolói munkák</h1>
+            <Divider />
+            <p>
+              A munkám során mindig a minőségre törekszem és arra, hogy az
+              elkészült felület tökéletesen nézzen ki és időtálló legyen.
+            </p>
+          </span>
 
-        <ImgModal imgArr={imgArr} descArr={descArr} />
-      </div>
-      <div className={styles.quote}>
-        <h2>Ingyenes árajánlatot szeretnék</h2>
-        <Link className={styles.contact} href={"/contact"}>
-          <RegularButton label="Árajánlatot kérek" />
-        </Link>
+          <ImgModal imgArr={imgArr} descArr={descArr} />
+        </div>
+        <Quote />
       </div>
     </>
   );

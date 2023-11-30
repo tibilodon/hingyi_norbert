@@ -3,6 +3,7 @@ import { Open_Sans } from "next/font/google";
 import type { Metadata } from "next";
 import AppContextProvider from "@/utils/appContext";
 import MobileNavbar from "@/components/navbar/mobile/MobileNavbar";
+import RegularNavbar from "@/components/navbar/regular/RegularNavbar";
 import PermanentBar from "@/components/permanentBar/PermanentBar";
 const openSans = Open_Sans({ subsets: ["latin"] });
 
@@ -33,7 +34,12 @@ export default function RootLayout({
         <AppContextProvider>
           <div className={"nav"}>
             <PermanentBar />
-            <MobileNavbar />
+            <div className={"mobileNav"}>
+              <MobileNavbar />
+            </div>
+            <div className={"regularNav"}>
+              <RegularNavbar />
+            </div>
           </div>
           <div className={"content"}>{children}</div>
         </AppContextProvider>

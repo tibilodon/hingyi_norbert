@@ -14,20 +14,8 @@
 .wrap img {
   cursor: pointer;
 }
-
-.sidebar {
-  /* width: 70%; */
-
-  /* align-self: center; */
-  display: grid;
-  grid-template-rows: 0fr;
-  transition: 400ms ease-in-out;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  margin: 0 5em;
-}
-.active {
-  grid-template-rows: 1fr;
-}
-.content {
-  overflow: hidden;
+.menuItem {
+  /* border: 2px solid red; */
+  display: flex;
+  gap: 1em;
 }
