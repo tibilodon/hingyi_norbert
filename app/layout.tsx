@@ -39,14 +39,14 @@ export const metadata: Metadata = {
   description: "Hingyi Norbert - Burkoló oldala",
   metadataBase: new URL("https://hingyi-norbert.vercel.app/api/og"),
   openGraph: {
-    title: "Title webtsite",
-    description: "this is the desciption",
+    title: "Burkoló - Hingyi Norbert",
+    description: "Hingyi Norbert - Burkoló oldala",
     images: [
       {
         url: "https://hingyi-norbert.vercel.app/api/og",
         width: 1200,
         height: 630,
-        alt: "hello",
+        // alt: "hello",
       },
     ],
   },
