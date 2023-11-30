@@ -2,8 +2,8 @@ import "./globals.css";
 import { Open_Sans } from "next/font/google";
 import type { Metadata } from "next";
 import AppContextProvider from "@/utils/appContext";
-import ez from "./opengraph-image.png";
-
+// import ez from "./opengraph-image.png";
+import ez from "@/public/opengraph-image.png";
 // import MobileNavbar from "@/components/navbar/mobile/MobileNavbar";
 import MobileNavbar from "@/components/navbar/mobile/MobileNavbar";
 import PermanentBar from "@/components/permanentBar/PermanentBar";
@@ -38,9 +38,11 @@ export const metadata: Metadata = {
   title: "Burkoló - Hingyi Norbert",
   description: "Hingyi Norbert - Burkoló oldala",
   openGraph: {
+    title: "Burkoló - Hingyi Norbert",
+    description: "Hingyi Norbert - Burkoló oldala",
     images: [
       {
-        url: "https://hingyi-norbert.vercel.app/api/og?title=Burkoló | Hingyi Norbert",
+        url: ez.src,
         width: 1200,
         height: 630,
       },
