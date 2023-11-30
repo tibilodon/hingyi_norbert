@@ -4,22 +4,14 @@ import contact from "@/public/contact.svg";
 import mail from "@/public/mail.svg";
 import black_phone from "@/public/black_phone.svg";
 import Banner from "@/components/banner/Banner";
-import type { Metadata } from "next";
-export const metadata: Metadata = {
-  title: "Burkoló - Hingyi Norbert",
-  description: "Hingyi Norbert - Burkoló oldala",
-  openGraph: {
-    // title: "Hingyi Norbert | Burkoló",
-    // description: "Hingyi Norbert | Burkoló",
-    // url: 'https://nextjs.org',
-    // siteName: 'Next.js',
-
-    images: ["./opengraph-image.png"],
-
-    // locale: "en_US",
-    // type: "website",
-  },
-};
+// import type { Metadata } from "next";
+// export const metadata: Metadata = {
+//   title: "Burkoló - Hingyi Norbert",
+//   description: "Hingyi Norbert - Burkoló oldala",
+//   openGraph: {
+//     images: ["./opengraph-image.png"],
+//   },
+// };
 
 export default function Home() {
   return (
