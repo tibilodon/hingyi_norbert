@@ -7,6 +7,7 @@
   flex-direction: column;
   justify-content: space-around;
   gap: 1em;
+  padding-bottom: 4em;
 }
 
 .wrap span {
@@ -20,8 +21,16 @@
   flex-direction: column;
   justify-content: space-between;
 }
-@media (min-width: 768px) {
+
+/*TODO:*/
+/* @media (min-width: 768px) {
   .wrap {
     height: 75vh;
+  }
+} */
+
+@media (min-width: 768px) {
+  .wrap {
+    height: var(--page_height);
   }
 }

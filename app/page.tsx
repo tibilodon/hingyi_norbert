@@ -6,6 +6,7 @@ import black_phone from "@/public/black_phone.svg";
 import Banner from "@/components/banner/Banner";
 
 import { Metadata } from "next";
+import Footer from "@/components/footer/Footer";
 export const metadata: Metadata = {
   title: "Burkoló - Hingyi Norbert",
   description: "Hingyi Norbert - Burkoló oldala",
@@ -64,10 +65,11 @@ export default function Home() {
           </div>
         </div>
 
-        <span className={styles.test}>
+        <span className={styles.banner}>
           <Banner />
         </span>
       </div>
+      <Footer />
     </>
   );
 }

@@ -26,7 +26,10 @@ const ImgModal: React.FunctionComponent<Props> = ({ imgArr, descArr }) => {
       const value = imgArr.indexOf(bg) + 1;
       setBg(imgArr[value]);
       setDesc(descArr[value]);
-    } else return;
+    } else {
+      setBg(imgArr[0]);
+      setDesc(descArr[0]);
+    }
   };
 
   const backwardHandler = (): void => {
@@ -34,7 +37,10 @@ const ImgModal: React.FunctionComponent<Props> = ({ imgArr, descArr }) => {
       const value = imgArr.indexOf(bg) - 1;
       setBg(imgArr[value]);
       setDesc(descArr[value]);
-    } else return;
+    } else {
+      setBg(imgArr[imgArr.length - 1]);
+      setDesc(descArr[descArr.length - 1]);
+    }
   };
   const selectedHandler = (i: number): void => {
     setBg(imgArr[i]);

@@ -32,15 +32,21 @@
   flex-direction: column;
   gap: 1em;
 }
+.wideWrap {
+  padding-bottom: 3em;
+  background-color: var(--orange2);
+}
 @media (min-width: 1023px) {
   .wideWrap {
     display: flex;
     width: 100%;
+    padding: 0;
+    background-color: none;
   }
   .wrap {
     width: 60%;
   }
-  .test {
+  .banner {
     width: 40%;
   }
 }

@@ -10,6 +10,7 @@ import Link from "next/link";
 
 import { Metadata } from "next";
 import Quote from "@/components/quote/Quote";
+import Footer from "@/components/footer/Footer";
 export const metadata: Metadata = {
   title: "Portfólió - Burkoló | Hingyi Norbert",
   description: "Hingyi Norbert - Burkoló oldala",
@@ -36,21 +37,22 @@ export default function Portfolio() {
   ];
   return (
     <>
-      <div className={styles.outer}>
-        <div className={styles.wrap}>
-          <span>
-            <h1>Burkolói munkák</h1>
-            <Divider />
-            <p>
-              A munkám során mindig a minőségre törekszem és arra, hogy az
-              elkészült felület tökéletesen nézzen ki és időtálló legyen.
-            </p>
-          </span>
+      {/* <div className={styles.outer}> */}
+      <div className={styles.wrap}>
+        <span>
+          <h1>Burkolói munkák</h1>
+          <Divider />
+          <p>
+            A munkám során mindig a minőségre törekszem és arra, hogy az
+            elkészült felület tökéletesen nézzen ki és időtálló legyen.
+          </p>
+        </span>
 
-          <ImgModal imgArr={imgArr} descArr={descArr} />
-        </div>
-        <Quote />
+        <ImgModal imgArr={imgArr} descArr={descArr} />
       </div>
+      {/* <Quote />
+      </div> */}
+      <Footer />
     </>
   );
 }

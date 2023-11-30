@@ -9,6 +9,7 @@ import RegularButton from "@/components/buttons/regular/RegularButton";
 import Link from "next/link";
 
 import { Metadata } from "next";
+import Footer from "@/components/footer/Footer";
 export const metadata: Metadata = {
   title: "Rólam - Burkoló | Hingyi Norbert",
   description: "Hingyi Norbert - Burkoló oldala",
@@ -66,12 +67,13 @@ export default function About() {
         />
         <WorkCard header="Renováció" img={reno.src} list={repair} />
       </div>
-      <div className={styles.quote}>
+      {/* <div className={styles.quote}>
         <h2>Ingyenes árajánlatot szeretnék</h2>
         <Link className={styles.contact} href={"/contact"}>
           <RegularButton label="Árajánlatot kérek" />
         </Link>
-      </div>
+      </div> */}
+      <Footer />
     </>
   );
 }
