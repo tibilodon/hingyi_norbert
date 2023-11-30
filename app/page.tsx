@@ -8,17 +8,19 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Burkoló - Hingyi Norbert",
   description: "Hingyi Norbert - Burkoló oldala",
-  // openGraph: {
-  //   title: "Burkoló - Hingyi Norbert",
-  //   description: "Hingyi Norbert - Burkoló oldala",
-  //   images: [
-  //     {
-  //       url: "https://hingyi-norbert.vercel.app/api/og",
-  //       width: 1200,
-  //       height: 630,
-  //     },
-  //   ],
-  // },
+  metadataBase: new URL("https://hingyi-norbert.vercel.app/api/og"),
+  openGraph: {
+    title: "Title webtsite",
+    description: "this is the desciption",
+    images: [
+      {
+        url: "https://hingyi-norbert.vercel.app/api/og",
+        width: 1200,
+        height: 630,
+        alt: "hello",
+      },
+    ],
+  },
 };
 
 export default function Home() {

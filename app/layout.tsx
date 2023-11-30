@@ -46,6 +46,7 @@ export const metadata: Metadata = {
         url: "https://hingyi-norbert.vercel.app/api/og",
         width: 1200,
         height: 630,
+        alt: "hello",
       },
     ],
   },
