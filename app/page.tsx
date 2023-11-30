@@ -4,6 +4,7 @@ import contact from "@/public/contact.svg";
 import mail from "@/public/mail.svg";
 import black_phone from "@/public/black_phone.svg";
 import Banner from "@/components/banner/Banner";
+
 import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Burkoló - Hingyi Norbert",
@@ -17,7 +18,6 @@ export const metadata: Metadata = {
         url: "https://hingyi-norbert.vercel.app/api/og",
         width: 1200,
         height: 630,
-        // alt: "hello",
       },
     ],
   },

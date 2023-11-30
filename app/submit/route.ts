@@ -12,5 +12,8 @@ export async function POST(req: Request) {
   }
 
   // Return a response
-  return NextResponse.json({ message: "whatever added" }, { status: 200 });
+  return NextResponse.json(
+    { message: "Message submitted successfully" },
+    { status: 200 }
+  );
 }

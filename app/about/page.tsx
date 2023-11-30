@@ -1,5 +1,4 @@
 import styles from "./page.module.css";
-import type { Metadata } from "next";
 import Image from "next/image";
 import headshot from "@/public/about_headshot.svg";
 import Divider from "@/components/divider/Divider";
@@ -9,10 +8,24 @@ import brandNew from "@/public/new.jpg";
 import RegularButton from "@/components/buttons/regular/RegularButton";
 import Link from "next/link";
 
+import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Rólam - Burkoló | Hingyi Norbert",
   description: "Hingyi Norbert - Burkoló oldala",
+  metadataBase: new URL("https://hingyi-norbert.vercel.app/api/og"),
+  openGraph: {
+    title: "Rólam - Burkoló | Hingyi Norbert",
+    description: "Hingyi Norbert - Burkoló oldala",
+    images: [
+      {
+        url: "https://hingyi-norbert.vercel.app/api/og",
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
 };
+
 export default function About() {
   const repair = ["Felújítás", "Átalakítás", "Felületek javítása"];
   const fromScratch = ["Új helyiségek", "Bővített területek"];

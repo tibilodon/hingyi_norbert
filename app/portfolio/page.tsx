@@ -3,15 +3,29 @@ import bath_ext from "@/public/bathroom_ext.jpg";
 import toilet_new from "@/public/toilet_new.jpg";
 import shower_new from "@/public/shower_reno.jpg";
 
-import type { Metadata } from "next";
 import ImgModal from "@/components/imgModal/ImgModal";
 import Divider from "@/components/divider/Divider";
 import RegularButton from "@/components/buttons/regular/RegularButton";
 import Link from "next/link";
+
+import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Portfólió - Burkoló | Hingyi Norbert",
   description: "Hingyi Norbert - Burkoló oldala",
+  metadataBase: new URL("https://hingyi-norbert.vercel.app/api/og"),
+  openGraph: {
+    title: "Portfólió - Burkoló | Hingyi Norbert",
+    description: "Hingyi Norbert - Burkoló oldala",
+    images: [
+      {
+        url: "https://hingyi-norbert.vercel.app/api/og",
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
 };
+
 export default function Portfolio() {
   const imgArr: string[] = [bath_ext.src, toilet_new.src, shower_new.src];
   const descArr: string[] = [
