@@ -42,9 +42,9 @@ export const metadata: Metadata = {
     description: "Hingyi Norbert - Burkoló oldala",
     images: [
       {
-        url: ez.src,
-        // width: 1200,
-        // height: 630,
+        url: "https://hingyi-norbert.vercel.app/api/og",
+        width: 1200,
+        height: 630,
       },
     ],
   },

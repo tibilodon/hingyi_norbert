@@ -4,14 +4,22 @@ import contact from "@/public/contact.svg";
 import mail from "@/public/mail.svg";
 import black_phone from "@/public/black_phone.svg";
 import Banner from "@/components/banner/Banner";
-// import type { Metadata } from "next";
-// export const metadata: Metadata = {
-//   title: "Burkoló - Hingyi Norbert",
-//   description: "Hingyi Norbert - Burkoló oldala",
-//   openGraph: {
-//     images: ["./opengraph-image.png"],
-//   },
-// };
+import { Metadata } from "next";
+export const metadata: Metadata = {
+  title: "Burkoló - Hingyi Norbert",
+  description: "Hingyi Norbert - Burkoló oldala",
+  openGraph: {
+    title: "Burkoló - Hingyi Norbert",
+    description: "Hingyi Norbert - Burkoló oldala",
+    images: [
+      {
+        url: "https://hingyi-norbert.vercel.app/api/og",
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
+};
 
 export default function Home() {
   return (
