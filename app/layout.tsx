@@ -43,8 +43,8 @@ export const metadata: Metadata = {
     images: [
       {
         url: ez.src,
-        width: 1200,
-        height: 630,
+        // width: 1200,
+        // height: 630,
       },
     ],
   },
