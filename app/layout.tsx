@@ -38,7 +38,13 @@ export const metadata: Metadata = {
   title: "Burkoló - Hingyi Norbert",
   description: "Hingyi Norbert - Burkoló oldala",
   openGraph: {
-    images: ["./opengraph-image.png"],
+    images: [
+      {
+        url: "https://hingyi-norbert.vercel.app/api/og?title=Burkoló | Hingyi Norbert",
+        width: 1200,
+        height: 630,
+      },
+    ],
   },
 };
 export default function RootLayout({
