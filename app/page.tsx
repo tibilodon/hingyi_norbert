@@ -9,25 +9,15 @@ export const metadata: Metadata = {
   title: "Burkoló - Hingyi Norbert",
   description: "Hingyi Norbert - Burkoló oldala",
   openGraph: {
-    title: "Hingyi Norbert | Burkoló",
-    description: "Hingyi Norbert | Burkoló",
+    // title: "Hingyi Norbert | Burkoló",
+    // description: "Hingyi Norbert | Burkoló",
     // url: 'https://nextjs.org',
     // siteName: 'Next.js',
-    images: [
-      {
-        url: "./opengraph-image.png",
-        width: 800,
-        height: 600,
-      },
-      {
-        url: "./opengraph-image.png",
-        width: 1800,
-        height: 1600,
-        alt: "My custom alt",
-      },
-    ],
-    locale: "en_US",
-    type: "website",
+
+    images: ["./opengraph-image.png"],
+
+    // locale: "en_US",
+    // type: "website",
   },
 };
 
