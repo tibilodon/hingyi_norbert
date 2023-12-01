@@ -43,11 +43,15 @@ const InputForm = () => {
       let data = {
         subject: ` --Portfólió új üzenet-- ${title}`,
         text: text,
-        html: `<b>Név: ${name}</b><br>
-         <b>E-mail cím: ${email}</b><br>
-         <b>Telefonszám: ${phone}</b><br>`,
+        html: `<h1 style="text-decoration: underline;">Új üzenet érkezett!</h1><br>
+        <br>
+        <b>Név: </b><span>${name}</span><br>
+         <b>E-mail cím: </b><span>${email}</span><br>
+         <b>Telefonszám: </b><span>${phone}</span><br>
+         <b>Tárgy: </b><span>${title}</span><br>
+         `,
       };
-      const response = await fetch("/submit", {
+      const response = await fetch("/api/submit", {
         method: "POST",
 
         headers: {

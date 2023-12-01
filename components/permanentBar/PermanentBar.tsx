@@ -7,6 +7,7 @@ import white_phone from "@/public/white_phone.svg";
 type Props = {};
 
 const PermanentBar = (props: Props) => {
+  const phoneNum = "06 12 123 456";
   return (
     <>
       <div className={styles.wrap}>
@@ -17,7 +18,9 @@ const PermanentBar = (props: Props) => {
           alt="phone icon"
           className={styles.icon}
         />
-        <h4>06 20 123 4567</h4>
+        <a href={`tel:${phoneNum}`}>
+          <h4>06 12 123 456</h4>
+        </a>
       </div>
     </>
   );

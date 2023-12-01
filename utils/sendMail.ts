@@ -23,7 +23,13 @@ const sendEmail = async (subject: string, text: string, html: string) => {
       },
       to: [tt],
       subject: subject,
-      html: `<html><body>${html}<p>${text}</p></body></html>`,
+      html: `
+      <html>
+      <body style="border: 2px solid black; padding:2em;">
+      ${html}
+      <p><b>Üzenet: </b><br>${text}</p>
+      </body>
+      </html>`,
     });
     console.log("Email sent:", info);
   } catch (error) {
