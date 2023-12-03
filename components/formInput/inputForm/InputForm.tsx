@@ -41,7 +41,7 @@ const InputForm = () => {
     try {
       const { name, phone, email, title, text } = form;
       let data = {
-        subject: ` --Portfólió új üzenet-- ${title}`,
+        subject: ` --Új üzenet érkezett-- ${title}`,
         text: text,
         html: `<h1 style="text-decoration: underline;">Új üzenet érkezett!</h1><br>
         <br>
