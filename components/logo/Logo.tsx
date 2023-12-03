@@ -10,9 +10,9 @@ const Logo: React.FunctionComponent<Props> = () => {
     <>
       <Link href={"/"}>
         <div className={styles.wrap}>
-          <h1>H</h1>
-          <Image src={trowel} alt="icon" priority height={30} width={30} />
           <h1>N</h1>
+          <Image src={trowel} alt="icon" priority height={30} width={30} />
+          <h1>B</h1>
         </div>
       </Link>
     </>

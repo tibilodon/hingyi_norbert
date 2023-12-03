@@ -12,10 +12,21 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 0.2em;
+  gap: 2em;
 }
 /* .icon {
   filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%)
     contrast(103%);
     
 } */
+.wrap span {
+  display: flex;
+  text-decoration: none;
+  color: var(--white);
+  gap: 0.2em;
+  align-items: center;
+}
+
+.wrap a {
+  color: var(--white);
+}

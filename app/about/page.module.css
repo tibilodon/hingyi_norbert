@@ -27,3 +27,10 @@
   flex-direction: column;
   gap: 0.5em;
 }
+
+/*TODO:*/
+.newContent {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
