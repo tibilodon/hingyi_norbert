@@ -11,28 +11,26 @@ const Banner = () => {
     <>
       <div className={styles.wrap}>
         <h2>Burkolói szolgáltatások</h2>
-        <div className={styles.content}>
-          <BannerBox
-            img={tiles}
-            label="Általános burkolás"
-            text="Falak, helyiségek és teljes létesítmények"
-          />
-          <BannerBox
-            img={tape}
-            label="Nagy és kis munkálatok"
-            text="Kérjen ingyenes árajánlatot mérettől függetlenül"
-          />
-          <BannerBox
-            img={van}
-            label="Szerszám és alapanyag biztosítása"
-            text="Minden amire szüksége van, alacsony áron"
-          />
-          <BannerBox
-            img={resto}
-            label="Javítás és felújítás"
-            text="A régi vagy sértült felület javítható"
-          />
-        </div>
+        <BannerBox
+          img={tiles}
+          label="Általános burkolás"
+          text="Falak, helyiségek és teljes létesítmények"
+        />
+        <BannerBox
+          img={tape}
+          label="Nagy és kis munkálatok"
+          text="Kérjen ingyenes árajánlatot mérettől függetlenül"
+        />
+        <BannerBox
+          img={van}
+          label="Szerszám és alapanyag biztosítása"
+          text="Minden amire szüksége van, alacsony áron"
+        />
+        <BannerBox
+          img={resto}
+          label="Javítás és felújítás"
+          text="A régi vagy sértült felület javítható"
+        />
       </div>
     </>
   );

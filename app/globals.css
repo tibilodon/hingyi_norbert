@@ -17,6 +17,8 @@
   --gray: #d0d1d3;
   --mobile: 768px;
   --page_height: calc(100vh - 5em);
+  --padding_no_bottom: 1em 2em 0 2.5em;
+  --padding: 1em 2em 3.5em 2.5em;
 }
 body {
   color: #333;
@@ -80,5 +82,10 @@ body {
   }
   .regularNav {
     display: block;
+  }
+}
+@media (min-width: 1023px) {
+  :root {
+    --padding: 1em 2em 0 2.5em;
   }
 }

@@ -2,19 +2,13 @@
   /* background-color: var(--light_blue2); */
   /* background-color: var(--orange1); */
   background-color: var(--orange2);
-  padding: 1em 2em 0 2.5em;
+  padding: var(--padding);
   height: var(--page_height);
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  gap: 1em;
 }
 .wrap h2 {
   font-size: 32px;
-}
-.content {
-  /* border: 2px solid aliceblue; */
-  display: flex;
-  flex-direction: column;
-  gap: 1.5em;
-  padding: 1em 0 1em 0;
 }

@@ -23,7 +23,7 @@ const PermanentBar = (props: Props) => {
             <h4>{phoneNum}</h4>
           </a>
         </span>
-        <a href="">nekedburkolok@gmail.com</a>
+        <a href="mailto:nekedburkolok@gmail.com">nekedburkolok@gmail.com</a>
       </div>
     </>
   );
