@@ -9,7 +9,6 @@ import { useAppProvider } from "@/utils/appContext";
 import React from "react";
 
 const MobileNavbar: React.FunctionComponent = () => {
-testing out ignore build step
   const { isOpen, setIsOpen } = useAppProvider();
   const toggle = (): void => {
     setIsOpen((prevOpen) => !prevOpen);
