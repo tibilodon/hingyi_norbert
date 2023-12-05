@@ -18,7 +18,9 @@ const MobileNavbar = (props: Props) => {
   return (
     <>
       <div className={styles.wrap}>
-        <Logo />
+        <span onClick={() => setIsOpen(false)}>
+          <Logo />
+        </span>
         <Image
           onClick={toggle}
           src={menu}

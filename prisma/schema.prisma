@@ -6,13 +6,19 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
+  provider = "postgres"
   url      = env("DATABASE_URL")
 }
 
-model Owner{
-  id Int @id@default(autoincrement())
-  name String @db.VarChar(50)
+model Owner {
+  id    Int    @id @default(autoincrement())
+  name  String @db.VarChar(50)
   email String @db.VarChar(50)
-  phone Int
+  phone String @db.VarChar(20)
+}
+
+model Images {
+  id          Int    @id @default(autoincrement())
+  imageUrl    String @db.VarChar(200)
+  description String
 }

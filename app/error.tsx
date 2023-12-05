@@ -1,3 +1,4 @@
+"use client";
 import ErrorContent from "@/components/error/ErrorContent";
 
 import { Metadata } from "next";
