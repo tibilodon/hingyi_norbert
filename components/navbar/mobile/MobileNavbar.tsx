@@ -8,9 +8,7 @@ import { useAppProvider } from "@/utils/appContext";
 
 import React from "react";
 
-type Props = {};
-
-const MobileNavbar = (props: Props) => {
+const MobileNavbar: React.FunctionComponent = () => {
   const { isOpen, setIsOpen } = useAppProvider();
   const toggle = (): void => {
     setIsOpen((prevOpen) => !prevOpen);
@@ -18,7 +16,9 @@ const MobileNavbar = (props: Props) => {
   return (
     <>
       <div className={styles.wrap}>
-        <Logo />
+        <span onClick={() => setIsOpen(false)}>
+          <Logo />
+        </span>
         <Image
           onClick={toggle}
           src={menu}
