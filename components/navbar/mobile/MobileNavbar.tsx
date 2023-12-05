@@ -8,9 +8,7 @@ import { useAppProvider } from "@/utils/appContext";
 
 import React from "react";
 
-type Props = {};
-
-const MobileNavbar = (props: Props) => {
+const MobileNavbar: React.FunctionComponent = () => {
   const { isOpen, setIsOpen } = useAppProvider();
   const toggle = (): void => {
     setIsOpen((prevOpen) => !prevOpen);
