@@ -33,57 +33,57 @@ export default async function Home() {
 
   //add type
 
-  const resp = await getTest();
-  if (Array.isArray(resp)) {
-    const { name, email, phone } = resp[0];
-    return (
-      <>
-        <div className={styles.wideWrap}>
-          <div className={styles.wrap}>
-            <h2>{name}</h2>
-            {/* <h2>Hingyi Norbert</h2> */}
-            <h1>Burkoló</h1>
-            <div className={styles.btns}>
-              <ButtonHome
-                img={contact}
-                label="Kapcsolat"
-                path="/contact"
-                outline={true}
-              />
-              <a href={`tel:${phone}`}>
-                <ButtonHome img={black_phone} label={phone} outline={false} />
-              </a>
+  // const resp = await getTest();
+  // if (Array.isArray(resp)) {
+  //   const { name, email, phone } = resp[0];
+  return (
+    <>
+      <div className={styles.wideWrap}>
+        <div className={styles.wrap}>
+          {/* <h2>{name}</h2> */}
+          <h2>Hingyi Norbert</h2>
+          <h1>Burkoló</h1>
+          <div className={styles.btns}>
+            <ButtonHome
+              img={contact}
+              label="Kapcsolat"
+              path="/contact"
+              outline={true}
+            />
+            <a href={`tel:${phoneNum}`}>
+              <ButtonHome img={black_phone} label={phoneNum} outline={false} />
+            </a>
 
-              {/*TODO:links to email app, highly inconvenient - nav to contact form and add template text*/}
-              <ButtonHome
-                img={mail}
-                label="Tervek és képek kérése"
-                path="/contact"
-                outline={false}
-              />
-            </div>
-
-            <strong>
-              Hingyi Norbert Pest megyei burkoló 5 év tapasztalattal.
-            </strong>
-            <ul>
-              <li>Magán és céges megrendelőknek</li>
-              <li>Bármilyen bonyolultságú és méretű felület burkolása</li>
-              <li>Főként Budapesten és körzetében elérhető</li>
-            </ul>
+            {/*TODO:links to email app, highly inconvenient - nav to contact form and add template text*/}
+            <ButtonHome
+              img={mail}
+              label="Tervek és képek kérése"
+              path="/contact"
+              outline={false}
+            />
           </div>
 
-          <span className={styles.banner}>
-            <Banner />
-          </span>
+          <strong>
+            Hingyi Norbert Pest megyei burkoló 5 év tapasztalattal.
+          </strong>
+          <ul>
+            <li>Magán és céges megrendelőknek</li>
+            <li>Bármilyen bonyolultságú és méretű felület burkolása</li>
+            <li>Főként Budapesten és körzetében elérhető</li>
+          </ul>
         </div>
-        <Footer />
-      </>
-    );
-  } else {
-    // Handle error response here
-    const msg = "error occured";
-    console.log("Error response-----------------------------:", resp);
-    return <Loading />;
-  }
+
+        <span className={styles.banner}>
+          <Banner />
+        </span>
+      </div>
+      <Footer />
+    </>
+  );
+  // } else {
+  //   // Handle error response here
+  //   const msg = "error occured";
+  //   console.log("Error response-----------------------------:", resp);
+  //   return <Loading />;
+  // }
 }

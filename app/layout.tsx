@@ -6,6 +6,8 @@ import MobileNavbar from "@/components/navbar/mobile/MobileNavbar";
 import RegularNavbar from "@/components/navbar/regular/RegularNavbar";
 import PermanentBar from "@/components/permanentBar/PermanentBar";
 
+//supabase
+
 const openSans = Open_Sans({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
