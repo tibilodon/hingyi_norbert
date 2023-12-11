@@ -20,7 +20,6 @@ export async function DELETE(req: Request) {
   console.log("delete got called");
   const supabase = createRouteHandlerClient({ cookies });
   const id = await req.json();
-  //   upsert available
   const { data } = await supabase.from("Owner").delete().match(id);
 
   return NextResponse.json(data);

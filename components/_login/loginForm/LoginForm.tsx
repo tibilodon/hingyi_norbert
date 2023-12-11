@@ -1,21 +1,22 @@
 import styles from "./loginForm.module.css";
+import LoginInput from "../input/LoginInput";
+import LoginButton from "@/components/buttons/login/LoginButton";
 type Props = {};
 
-const LoginForm = (props: Props) => {
+const LoginForm: React.FunctionComponent<Props> = () => {
   return (
     <>
-      <div className={styles.wrap}>
-        <h1>loginform</h1>
-        <form action="/api/auth/login" method="post">
-          <label htmlFor="email">Email</label>
-          <input name="email" />
-          <label htmlFor="password">Password</label>
-          <input type="password" name="password" />
-          <button>Sign In</button>
-          <button formAction="/api/auth/sign-up">Sign Up</button>
-          <button formAction="/api/auth/logout">Log Out</button>
-        </form>
-      </div>
+      <form className={styles.wrap} action="/api/auth/login" method="post">
+        <LoginInput htmlFor="email" label="E-mail" name="email" type="email" />
+        <LoginInput
+          htmlFor="password"
+          label="Password"
+          name="password"
+          type="password"
+        />
+        <LoginButton type="submit" label="SIGN IN" />
+        <LoginButton formAction="/api/auth/sign-up" label="Sign Up" />
+      </form>
     </>
   );
 };

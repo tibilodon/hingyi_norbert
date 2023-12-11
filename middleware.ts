@@ -1,3 +1,5 @@
+//  Next.js Middleware runs immediately before each route is rendered, allowing to read and write cookies
+
 import { createMiddlewareClient } from "@supabase/auth-helpers-nextjs";
 import { NextResponse } from "next/server";
 
