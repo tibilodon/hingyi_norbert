@@ -1,6 +1,6 @@
 generator client {
   provider        = "prisma-client-js"
-  previewFeatures = ["clientExtensions", "multiSchema"]
+  previewFeatures = ["multiSchema"]
   binaryTargets   = ["native"]
 }
 
@@ -38,9 +38,9 @@ model flow_state {
   authentication_method  String
   saml_relay_states      saml_relay_states[]
 
+  @@index([created_at(sort: Desc)])
   @@index([auth_code], map: "idx_auth_code")
   @@index([user_id, authentication_method], map: "idx_user_id_auth_method")
-  @@index([created_at(sort: Desc)])
   @@schema("auth")
 }
 
@@ -139,6 +139,7 @@ model refresh_tokens {
   @@schema("auth")
 }
 
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model saml_providers {
   id                String        @id @db.Uuid
@@ -155,6 +156,7 @@ model saml_providers {
   @@schema("auth")
 }
 
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model saml_relay_states {
   id              String        @id @db.Uuid
@@ -169,9 +171,9 @@ model saml_relay_states {
   flow_state      flow_state?   @relation(fields: [flow_state_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
   sso_providers   sso_providers @relation(fields: [sso_provider_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
 
+  @@index([created_at(sort: Desc)])
   @@index([for_email])
   @@index([sso_provider_id])
-  @@index([created_at(sort: Desc)])
   @@schema("auth")
 }
 
@@ -199,12 +201,13 @@ model sessions {
   refresh_tokens refresh_tokens[]
   users          users            @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
 
+  @@index([not_after(sort: Desc)])
   @@index([user_id])
   @@index([user_id, created_at], map: "user_id_created_at_idx")
-  @@index([not_after(sort: Desc)])
   @@schema("auth")
 }
 
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 /// This model contains an expression index which requires additional setup for migrations. Visit https://pris.ly/d/expression-indexes for more info.
 model sso_domains {
@@ -219,6 +222,7 @@ model sso_domains {
   @@schema("auth")
 }
 
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 /// This model contains an expression index which requires additional setup for migrations. Visit https://pris.ly/d/expression-indexes for more info.
 model sso_providers {
@@ -233,6 +237,7 @@ model sso_providers {
   @@schema("auth")
 }
 
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 /// This model contains an expression index which requires additional setup for migrations. Visit https://pris.ly/d/expression-indexes for more info.
 model users {
@@ -285,16 +290,35 @@ model Owner {
   title       String?
   user_id     String?  @default(dbgenerated("auth.uid()")) @db.Uuid
   is_complete Boolean  @default(false)
-  test String?
-
+  test        String?
 
   @@schema("public")
 }
 
-/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
-model Todo {
+model Home {
   id         BigInt   @id @default(autoincrement())
   created_at DateTime @default(now()) @db.Timestamptz(6)
+  user_id    String?  @default(dbgenerated("auth.uid()")) @db.Uuid
+
+  name              String?
+  profession        String?
+  btn1              String?
+  phoneNumber       String?
+  btn3              String?
+  line1_1           String?
+  line1_2           String?
+  line1_3           String?
+  line1_4           String?
+  //banner
+  banner_hero       String?
+  bannerBox_1_label String?
+  bannerBox_1_text  String?
+  bannerBox_2_label String?
+  bannerBox_2_text  String?
+  bannerBox_3_label String?
+  bannerBox_3_text  String?
+  bannerBox_4_label String?
+  bannerBox_4_text  String?
 
   @@schema("public")
 }

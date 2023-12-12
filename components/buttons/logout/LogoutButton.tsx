@@ -4,7 +4,9 @@ type Props = {};
 const LogoutButton: React.FunctionComponent<Props> = () => {
   return (
     <form className={styles.wrap} action="/api/auth/logout" method="post">
-      <button formAction="/api/auth/logout">Log Out</button>
+      <button type="submit" formAction="/api/auth/logout">
+        Log Out
+      </button>
     </form>
   );
 };

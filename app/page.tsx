@@ -8,8 +8,6 @@ import Loading from "./loading";
 
 import { Metadata } from "next";
 import Footer from "@/components/footer/Footer";
-import { getData, getTest } from "./api/test/route";
-import { CMSTest } from "./api/test/route";
 
 export const metadata: Metadata = {
   title: "Burkoló - Hingyi Norbert",

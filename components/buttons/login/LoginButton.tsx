@@ -12,11 +12,7 @@ const LoginButton: React.FunctionComponent<Props> = ({
 }) => {
   return (
     <>
-      <button
-        className={styles.wrap}
-        formAction={formAction}
-        type={type || "button"}
-      >
+      <button className={styles.wrap} formAction={formAction} type={type}>
         {label}
       </button>
     </>

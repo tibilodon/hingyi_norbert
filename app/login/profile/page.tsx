@@ -16,7 +16,7 @@ export default async function Profile() {
         <LoginWrap>
           <h1>hello {session.user.email}</h1>
           <h1>You are logged in!</h1>
-          <Link href={"/admin"}>
+          <Link href={"/cms"}>
             <button>proceed to cms</button>
           </Link>
           <LogoutButton />

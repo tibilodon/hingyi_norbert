@@ -7,7 +7,7 @@ const Footer = () => {
     <>
       <div className={styles.wrap}>
         {/* <h2>Ingyenes árajánlatot szeretnék</h2> */}
-        <Link className={styles.contact} href={"/contact"}>
+        <Link href={"/contact"}>
           <RegularButton label="Árajánlatot kérek" color="var(--orange1)" />
         </Link>
       </div>

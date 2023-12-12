@@ -9,6 +9,111 @@ export type Json =
 export interface Database {
   public: {
     Tables: {
+      _prisma_migrations: {
+        Row: {
+          applied_steps_count: number
+          checksum: string
+          finished_at: string | null
+          id: string
+          logs: string | null
+          migration_name: string
+          rolled_back_at: string | null
+          started_at: string
+        }
+        Insert: {
+          applied_steps_count?: number
+          checksum: string
+          finished_at?: string | null
+          id: string
+          logs?: string | null
+          migration_name: string
+          rolled_back_at?: string | null
+          started_at?: string
+        }
+        Update: {
+          applied_steps_count?: number
+          checksum?: string
+          finished_at?: string | null
+          id?: string
+          logs?: string | null
+          migration_name?: string
+          rolled_back_at?: string | null
+          started_at?: string
+        }
+        Relationships: []
+      }
+      Home: {
+        Row: {
+          banner_hero: string | null
+          bannerBox_1_label: string | null
+          bannerBox_1_text: string | null
+          bannerBox_2_label: string | null
+          bannerBox_2_text: string | null
+          bannerBox_3_label: string | null
+          bannerBox_3_text: string | null
+          bannerBox_4_label: string | null
+          bannerBox_4_text: string | null
+          btn1: string | null
+          btn3: string | null
+          created_at: string
+          id: number
+          line1_1: string | null
+          line1_2: string | null
+          line1_3: string | null
+          line1_4: string | null
+          name: string | null
+          phoneNumber: string | null
+          profession: string | null
+          user_id: string | null
+        }
+        Insert: {
+          banner_hero?: string | null
+          bannerBox_1_label?: string | null
+          bannerBox_1_text?: string | null
+          bannerBox_2_label?: string | null
+          bannerBox_2_text?: string | null
+          bannerBox_3_label?: string | null
+          bannerBox_3_text?: string | null
+          bannerBox_4_label?: string | null
+          bannerBox_4_text?: string | null
+          btn1?: string | null
+          btn3?: string | null
+          created_at?: string
+          id?: number
+          line1_1?: string | null
+          line1_2?: string | null
+          line1_3?: string | null
+          line1_4?: string | null
+          name?: string | null
+          phoneNumber?: string | null
+          profession?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          banner_hero?: string | null
+          bannerBox_1_label?: string | null
+          bannerBox_1_text?: string | null
+          bannerBox_2_label?: string | null
+          bannerBox_2_text?: string | null
+          bannerBox_3_label?: string | null
+          bannerBox_3_text?: string | null
+          bannerBox_4_label?: string | null
+          bannerBox_4_text?: string | null
+          btn1?: string | null
+          btn3?: string | null
+          created_at?: string
+          id?: number
+          line1_1?: string | null
+          line1_2?: string | null
+          line1_3?: string | null
+          line1_4?: string | null
+          name?: string | null
+          phoneNumber?: string | null
+          profession?: string | null
+          user_id?: string | null
+        }
+        Relationships: []
+      }
       Owner: {
         Row: {
           created_at: string
@@ -33,21 +138,6 @@ export interface Database {
           test?: string | null
           title?: string | null
           user_id?: string | null
-        }
-        Relationships: []
-      }
-      Todo: {
-        Row: {
-          created_at: string
-          id: number
-        }
-        Insert: {
-          created_at?: string
-          id?: number
-        }
-        Update: {
-          created_at?: string
-          id?: number
         }
         Relationships: []
       }
