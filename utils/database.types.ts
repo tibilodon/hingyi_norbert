@@ -9,39 +9,6 @@ export type Json =
 export interface Database {
   public: {
     Tables: {
-      _prisma_migrations: {
-        Row: {
-          applied_steps_count: number
-          checksum: string
-          finished_at: string | null
-          id: string
-          logs: string | null
-          migration_name: string
-          rolled_back_at: string | null
-          started_at: string
-        }
-        Insert: {
-          applied_steps_count?: number
-          checksum: string
-          finished_at?: string | null
-          id: string
-          logs?: string | null
-          migration_name: string
-          rolled_back_at?: string | null
-          started_at?: string
-        }
-        Update: {
-          applied_steps_count?: number
-          checksum?: string
-          finished_at?: string | null
-          id?: string
-          logs?: string | null
-          migration_name?: string
-          rolled_back_at?: string | null
-          started_at?: string
-        }
-        Relationships: []
-      }
       Home: {
         Row: {
           banner_hero: string | null
@@ -57,6 +24,7 @@ export interface Database {
           btn3: string | null
           created_at: string
           id: number
+          imgName: string | null
           line1_1: string | null
           line1_2: string | null
           line1_3: string | null
@@ -64,6 +32,7 @@ export interface Database {
           name: string | null
           phoneNumber: string | null
           profession: string | null
+          updated_at: string | null
           user_id: string | null
         }
         Insert: {
@@ -80,6 +49,7 @@ export interface Database {
           btn3?: string | null
           created_at?: string
           id?: number
+          imgName?: string | null
           line1_1?: string | null
           line1_2?: string | null
           line1_3?: string | null
@@ -87,6 +57,7 @@ export interface Database {
           name?: string | null
           phoneNumber?: string | null
           profession?: string | null
+          updated_at?: string | null
           user_id?: string | null
         }
         Update: {
@@ -103,6 +74,7 @@ export interface Database {
           btn3?: string | null
           created_at?: string
           id?: number
+          imgName?: string | null
           line1_1?: string | null
           line1_2?: string | null
           line1_3?: string | null
@@ -110,6 +82,7 @@ export interface Database {
           name?: string | null
           phoneNumber?: string | null
           profession?: string | null
+          updated_at?: string | null
           user_id?: string | null
         }
         Relationships: []

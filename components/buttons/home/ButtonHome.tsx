@@ -2,7 +2,12 @@ import Link from "next/link";
 import styles from "./buttonHome.module.css";
 import Image from "next/image";
 
-type Props = { label: string; path?: string; img: string; outline: boolean };
+type Props = {
+  label: string | null;
+  path?: string;
+  img: string;
+  outline: boolean;
+};
 
 const ButtonHome: React.FunctionComponent<Props> = ({
   label,

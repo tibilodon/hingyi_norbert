@@ -8,6 +8,7 @@ import Loading from "./loading";
 
 import { Metadata } from "next";
 import Footer from "@/components/footer/Footer";
+import { supaCreateServerComponentClient } from "@/utils/supabaseClient";
 
 export const metadata: Metadata = {
   title: "Burkoló - Hingyi Norbert",
@@ -27,52 +28,88 @@ export const metadata: Metadata = {
 };
 
 export default async function Home() {
-  const phoneNum = "06 30 716 9769";
+  const supabase = await supaCreateServerComponentClient();
+  const { data: data } = await supabase.from("Home").select();
+  const { data: image } = supabase.storage
+    .from("images")
+    .getPublicUrl("landing");
 
+  console.log(image);
+
+  const wrapBackground: React.CSSProperties = {
+    background: `rgba(0, 0, 0, 0.2) url(${image.publicUrl})`,
+  };
   //add type
 
   // const resp = await getTest();
   // if (Array.isArray(resp)) {
   //   const { name, email, phone } = resp[0];
+
+  if (!data || !image) {
+    return <Loading />;
+  }
+  const {
+    name,
+    profession,
+    btn1,
+    phoneNumber,
+    btn3,
+    line1_1,
+    line1_2,
+    line1_3,
+    line1_4,
+    // //banner
+    // banner_hero,
+    // bannerBox_1_label,
+    // bannerBox_1_text,
+    // bannerBox_2_label,
+    // bannerBox_2_text,
+    // bannerBox_3_label,
+    // bannerBox_3_text,
+    // bannerBox_4_label,
+    // bannerBox_4_text,
+  } = data[0];
   return (
     <>
       <div className={styles.wideWrap}>
-        <div className={styles.wrap}>
+        <div className={styles.wrap} style={wrapBackground}>
           {/* <h2>{name}</h2> */}
-          <h2>Hingyi Norbert</h2>
-          <h1>Burkoló</h1>
+          <h2>{name}</h2>
+          <h1>{profession}</h1>
           <div className={styles.btns}>
             <ButtonHome
               img={contact}
-              label="Kapcsolat"
+              label={btn1}
               path="/contact"
               outline={true}
             />
-            <a href={`tel:${phoneNum}`}>
-              <ButtonHome img={black_phone} label={phoneNum} outline={false} />
+            <a href={`tel:${phoneNumber}`}>
+              <ButtonHome
+                img={black_phone}
+                label={phoneNumber}
+                outline={false}
+              />
             </a>
 
             {/*TODO:links to email app, highly inconvenient - nav to contact form and add template text*/}
             <ButtonHome
               img={mail}
-              label="Tervek és képek kérése"
+              label={btn3}
               path="/contact"
               outline={false}
             />
           </div>
 
-          <strong>
-            Hingyi Norbert Pest megyei burkoló 5 év tapasztalattal.
-          </strong>
+          <strong>{line1_1}</strong>
           <ul>
-            <li>Magán és céges megrendelőknek</li>
-            <li>Bármilyen bonyolultságú és méretű felület burkolása</li>
-            <li>Főként Budapesten és körzetében elérhető</li>
+            <li>{line1_2}</li>
+            <li>{line1_3}</li>
+            <li>{line1_4}</li>
           </ul>
         </div>
 
         <span className={styles.banner}>
-          <Banner />
+          <Banner data={data} />
         </span>
       </div>
       <Footer />

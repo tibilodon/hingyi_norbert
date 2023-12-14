@@ -1,7 +1,7 @@
 .wrap {
   min-height: var(--page_height);
 
-  background: rgba(0, 0, 0, 0.2) url(../../../public/landing_2.jpg);
+  /* background: rgba(0, 0, 0, 0.2) url(../../../public/landing_2.jpg); */
   background-size: cover;
   background-blend-mode: darken;
   color: var(--white);
@@ -91,7 +91,12 @@
   font-weight: bold;
   color: var(--white);
 }
-
+.submit label {
+  border: 2px solid black;
+  padding: 0.2em;
+  font-weight: bold;
+  font-size: larger;
+}
 @media (min-width: 1023px) {
   .wideWrap {
     display: flex;

@@ -5,31 +5,48 @@ import van from "@/public/van.svg";
 import resto from "@/public/resto.svg";
 
 import BannerBox from "./box/BannerBox";
+import { Home } from "@/utils/commonTypes";
+import Loading from "@/app/loading";
 
-const Banner = () => {
+const Banner: React.FunctionComponent<Home> = ({ data }) => {
+  if (!data) {
+    return <Loading />;
+  }
+
+  const {
+    banner_hero,
+    bannerBox_1_label,
+    bannerBox_1_text,
+    bannerBox_2_label,
+    bannerBox_2_text,
+    bannerBox_3_label,
+    bannerBox_3_text,
+    bannerBox_4_label,
+    bannerBox_4_text,
+  } = data[0];
   return (
     <>
       <div className={styles.wrap}>
-        <h2>Burkolói szolgáltatások</h2>
+        <h2>{banner_hero}</h2>
         <BannerBox
           img={tiles}
-          label="Általános burkolás"
-          text="Falak, helyiségek és teljes létesítmények"
+          label={bannerBox_1_label}
+          text={bannerBox_1_text}
         />
         <BannerBox
           img={tape}
-          label="Nagy és kis munkálatok"
-          text="Kérjen ingyenes árajánlatot mérettől függetlenül"
+          label={bannerBox_2_label}
+          text={bannerBox_2_text}
         />
         <BannerBox
           img={van}
-          label="Szerszám és alapanyag biztosítása"
-          text="Minden amire szüksége van, alacsony áron"
+          label={bannerBox_3_label}
+          text={bannerBox_3_text}
         />
         <BannerBox
           img={resto}
-          label="Javítás és felújítás"
-          text="A régi vagy sértült felület javítható"
+          label={bannerBox_4_label}
+          text={bannerBox_4_text}
         />
       </div>
     </>

@@ -23,6 +23,7 @@ export default async function NewOwner() {
     const req = await supabase.from("Owner").insert({ title });
     console.log(req);
     revalidatePath("/test");
+
     // try {
     //   const req = await supabase.from("Owner").insert({ email, phone, name });
     //   //   console.log(req);
@@ -40,6 +41,7 @@ export default async function NewOwner() {
           <input name="title" />
           {/* <input name="email" />
           <input name="phone" /> */}
+
           <button type="submit">clickl</button>
         </form>
       </div>

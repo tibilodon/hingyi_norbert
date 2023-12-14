@@ -1,7 +1,7 @@
 import styles from "./bannerBox.module.css";
 import Image from "next/image";
 
-type Props = { img: string; label: string; text: string };
+type Props = { img: string; label: string | null; text: string | null };
 
 const BannerBox: React.FunctionComponent<Props> = ({ img, label, text }) => {
   return (

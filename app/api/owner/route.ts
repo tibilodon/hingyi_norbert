@@ -6,6 +6,7 @@ import { NextResponse } from "next/server";
 export async function PUT(req: Request) {
   const supabase = createRouteHandlerClient({ cookies });
   const id = await req.json();
+  console.log("id:", id, "typeof: ", typeof id);
   //   upsert available
   const { data } = await supabase
     .from("Owner")

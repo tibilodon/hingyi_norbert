@@ -9,6 +9,7 @@ import NewOwner from "../supatest/create/page";
 import Login from "../login/page";
 import RealTimeOwner from "./RealTimeOwner";
 import SimpleFetchProtectedRoute from "./SimpleFetch";
+import Image from "next/image";
 
 export default async function ServerComponent() {
   const supabase = createServerComponentClient<Database>({
@@ -33,6 +34,24 @@ export default async function ServerComponent() {
   if (!session) {
     redirect("/unauthenticated");
   }
+
+  const { data: image } = await supabase.storage.from("images").list("/");
+  console.log(image);
+  // .getPublicUrl("landing");
+  // const { data: testUpdate } = await supabase.storage
+  //   .from("images")
+  //   .update("images/opengraph-image.png", testImage.src);
+
+  // .getPublicUrl("opengraph-image.png");
+
+  // console.log("images me nigfga:", img);
+  // let imgName;
+
+  //  TODO: img name returned, get getPublicUrl with that
+  // if (Array.isArray(img)) {
+  //   imgName = img[0];
+  // }
+
   return (
     <>
       <div className={styles.wrap}>
@@ -40,6 +59,7 @@ export default async function ServerComponent() {
   ---FOR AUTH REQUIRED DATA PRESENTATION--SET RLS RULES ACCORDINGLY--*/}
         <h1>{session.user.email}</h1>
         <h1>{session.user.id}</h1>
+        {/* <img width={40} height={40} src={image.publicUrl} alt="test" /> */}
         {/* <pre>{JSON.stringify(data, null, 2)}</pre> */}
         {/* <TestForm /> */}
         {/* <Login /> */}

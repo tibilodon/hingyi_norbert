@@ -15,20 +15,16 @@ export default async function CMSHome() {
     //select based on criteria:
     .match({ user_id: session?.user.id });
 
-  console.log(data);
-
-  // const { data: owner } = await supabase
-  //   .from("Owner")
-  //   .select()
-  //   //select based on criteria:
-  //   .match({ is_complete: false });
+  const { data: image } = supabase.storage
+    .from("images")
+    .getPublicUrl("landing");
 
   if (!session) {
     redirect("/unauthenticated");
   }
   return (
     <>
-      <HomeCMS data={data} />
+      <HomeCMS data={data} image={image.publicUrl} />
     </>
   );
 }

@@ -1,80 +1,134 @@
 "use client";
-import { FormEvent, useState } from "react";
+import { FormEvent, useState, useEffect, SetStateAction } from "react";
 import styles from "./homeCMS.module.css";
 
 import contact from "@/public/contact.svg";
 import mail from "@/public/mail.svg";
 import black_phone from "@/public/black_phone.svg";
-import Banner from "@/components/banner/Banner";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import tape from "@/public/tape.svg";
 import tiles from "@/public/tiles.svg";
 import van from "@/public/van.svg";
 import resto from "@/public/resto.svg";
+import { saveImageToBucket } from "@/utils/CMSHelpers";
+//supabase
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+import Loading from "@/app/loading";
 
-type Props = {
-  data:
-    | {
-        banner_hero: string | null;
-        bannerBox_1_label: string | null;
-        bannerBox_1_text: string | null;
-        bannerBox_2_label: string | null;
-        bannerBox_2_text: string | null;
-        bannerBox_3_label: string | null;
-        bannerBox_3_text: string | null;
-        bannerBox_4_label: string | null;
-        bannerBox_4_text: string | null;
-        btn1: string | null;
-        btn3: string | null;
-        created_at: string;
-        id: number;
-        line1_1: string | null;
-        line1_2: string | null;
-        line1_3: string | null;
-        line1_4: string | null;
-        name: string | null;
-        phoneNumber: string | null;
-        profession: string | null;
-        user_id: string | null;
-      }[]
-    | null;
-};
+// type Props = {
+//   data:
+//     | {
+//         banner_hero: string;
+//         bannerBox_1_label: string;
+//         bannerBox_1_text: string;
+//         bannerBox_2_label: string;
+//         bannerBox_2_text: string;
+//         bannerBox_3_label: string;
+//         bannerBox_3_text: string;
+//         bannerBox_4_label: string;
+//         bannerBox_4_text: string;
+//         btn1: string;
+//         btn3: string;
+//         created_at: string;
+//         id: number;
+//         line1_1: string;
+//         line1_2: string;
+//         line1_3: string;
+//         line1_4: string;
+//         name: string;
+//         phoneNumber: string;
+//         profession: string;
+//         user_id: string;
+//       }[];
 
-const HomeCMS: React.FunctionComponent<Props> = ({ data }) => {
-  const [form, setForm] = useState({
-    name: "Hingyi Norbert",
-    profession: "Burkoló",
-    btn1: "Kapcsolat",
-    phoneNumber: "06 30 716 9769",
-    btn3: "Tervek és képek kérése",
-    line_1: "Hingyi Norbert Pest megyei burkoló 5 év tapasztalattal.",
-    line_2: "Magán és céges megrendelőknek",
-    line_3: "Bármilyen bonyolultságú és méretű felület burkolása",
-    line_4: "Főként Budapesten és körzetében elérhető",
-    //banner
-    banner_hero: "Burkolói szolgáltatások",
-    bannerBox_1_label: "Általános burkolás",
-    bannerBox_1_text: "Falak, helyiségek és teljes létesítmények",
-    bannerBox_2_label: "Nagy és kis munkálatok",
-    bannerBox_2_text: "Kérjen ingyenes árajánlatot mérettől függetlenül",
-    bannerBox_3_label: "Szerszám és alapanyag biztosítása",
-    bannerBox_3_text: "Minden amire szüksége van, alacsony áron",
-    bannerBox_4_label: "Javítás és felújítás",
-    bannerBox_4_text: "A régi vagy sértült felület javítható",
-  });
+// };
+
+const HomeCMS: React.FunctionComponent<any> = ({ data }) => {
+  console.log(data);
+  const supabase = createClientComponentClient();
+  const router = useRouter();
+
+  const [form, setForm] = useState(data[0]);
+  const [img, setImg] = useState<File>();
+
+  useEffect(() => {
+    // if (Array.isArray(data)) {
+    //   setForm((prevVals: any) => ({
+    //     ...prevVals,
+    //     imgName: String(new Date().getTime()),
+    //   }));
+    // }
+    const channel = supabase
+      .channel("realtime home")
+      .on(
+        "postgres_changes",
+        {
+          event: "*", //insert,update,delete
+          schema: "public",
+          table: "Home",
+        },
+        () => {
+          router.refresh();
+        }
+      )
+      .subscribe();
+    return () => {
+      supabase.removeChannel(channel);
+    };
+  }, [router, supabase, data, img]);
+
+  // const [form, setForm] = useState<Home>(
+  //   data[0] ?? {
+  //     name: "Hingyi Norbert",
+  //     profession: "Burkoló",
+  //     btn1: "Kapcsolat",
+  //     phoneNumber: "06 30 716 9769",
+  //     btn3: "Tervek és képek kérése",
+  //     line1_1: "Hingyi Norbert Pest megyei burkoló 5 év tapasztalattal.",
+  //     line1_2: "Magán és céges megrendelőknek",
+  //     line1_3: "Bármilyen bonyolultságú és méretű felület burkolása",
+  //     line1_4: "Főként Budapesten és körzetében elérhető",
+  //     //banner
+  //     banner_hero: "Burkolói szolgáltatások",
+  //     bannerBox_1_label: "Általános burkolás",
+  //     bannerBox_1_text: "Falak, helyiségek és teljes létesítmények",
+  //     bannerBox_2_label: "Nagy és kis munkálatok",
+  //     bannerBox_2_text: "Kérjen ingyenes árajánlatot mérettől függetlenül",
+  //     bannerBox_3_label: "Szerszám és alapanyag biztosítása",
+  //     bannerBox_3_text: "Minden amire szüksége van, alacsony áron",
+  //     bannerBox_4_label: "Javítás és felújítás",
+  //     bannerBox_4_text: "A régi vagy sértült felület javítható",
+  //   }
+  // );
+
+  // const [form, setForm] = useState<Home>({
+  //   data: Array.isArray(data) && data.length > 0 ? data[0] : null,
+  // });
 
   const onChangeHandler = (
     e: React.FormEvent<HTMLHeadingElement> | FormEvent<HTMLLIElement>
   ): void => {
     const { id, textContent } = e.currentTarget;
-    setForm((prevVals) => ({
+    setForm((prevVals: any) => ({
       ...prevVals,
       [id]: textContent,
     }));
   };
 
-  const logme = () => {
-    console.log(form);
+  const submitHandler = async () => {
+    try {
+      await fetch("/api/cms/home", {
+        method: "PUT",
+        body: JSON.stringify(form),
+      });
+      if (img) {
+        saveImageToBucket(supabase, form.imgName, img);
+      }
+      router.refresh();
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   //add type
@@ -82,16 +136,23 @@ const HomeCMS: React.FunctionComponent<Props> = ({ data }) => {
   // const resp = await getTest();
   // if (Array.isArray(resp)) {
   //   const { name, email, phone } = resp[0];
+  // if (Array.isArray(data)) {
+
+  // }
+  const wrapBackground: React.CSSProperties = {
+    background: `rgba(0, 0, 0, 0.2) url(${data[0].imgName})`,
+  };
+
   const {
     name,
     profession,
     btn1,
     phoneNumber,
     btn3,
-    line_1,
-    line_2,
-    line_3,
-    line_4,
+    line1_1,
+    line1_2,
+    line1_3,
+    line1_4,
     //banner
     banner_hero,
     bannerBox_1_label,
@@ -103,10 +164,25 @@ const HomeCMS: React.FunctionComponent<Props> = ({ data }) => {
     bannerBox_4_label,
     bannerBox_4_text,
   } = form;
+
+  if (!data) {
+    return <Loading />;
+  }
+
+  const imgUpdateHandler = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.currentTarget.files) {
+      const file = e.currentTarget.files[0];
+      setImg(file);
+      setForm((prevVals: any) => ({
+        ...prevVals,
+        imgName: String(new Date().getTime()),
+      }));
+    }
+  };
   return (
     <>
       <div className={styles.wideWrap}>
-        <div className={styles.wrap}>
+        <div className={styles.wrap} style={wrapBackground}>
           {/* <h2>{name}</h2> */}
           <h2
             contentEditable
@@ -185,9 +261,9 @@ const HomeCMS: React.FunctionComponent<Props> = ({ data }) => {
             contentEditable
             suppressContentEditableWarning
             onBlur={onChangeHandler}
-            id="line_1"
+            id="line1_1"
           >
-            {line_1}
+            {line1_1}
           </h4>
 
           <ul>
@@ -195,25 +271,25 @@ const HomeCMS: React.FunctionComponent<Props> = ({ data }) => {
               contentEditable
               suppressContentEditableWarning
               onBlur={onChangeHandler}
-              id="line_2"
+              id="line1_2"
             >
-              {line_2}
+              {line1_2}
             </li>
             <li
               contentEditable
               suppressContentEditableWarning
               onBlur={onChangeHandler}
-              id="line_3"
+              id="line1_3"
             >
-              {line_3}
+              {line1_3}
             </li>
             <li
               contentEditable
               suppressContentEditableWarning
               onBlur={onChangeHandler}
-              id="line_4"
+              id="line1_4"
             >
-              {line_4}
+              {line1_4}
             </li>
           </ul>
         </div>
@@ -320,9 +396,19 @@ const HomeCMS: React.FunctionComponent<Props> = ({ data }) => {
           </div>
         </span>
       </div>
-      <button className={styles.submit} onClick={logme}>
-        <strong>MENTÉS</strong>
-      </button>
+
+      <div className={styles.submit}>
+        <input
+          id="img"
+          style={{ display: "none" }}
+          type="file"
+          onChange={imgUpdateHandler}
+        />
+        <label htmlFor="img">Kép csere</label>
+        <button onClick={submitHandler}>
+          <strong>MENTÉS</strong>
+        </button>
+      </div>
     </>
   );
   // } else {
