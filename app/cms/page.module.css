@@ -9,3 +9,8 @@
 .wrap span {
   border: 1px solid var(--dark_blue2);
 }
+.links {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}

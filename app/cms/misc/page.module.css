@@ -1,0 +1,4 @@
+.wrap {
+  min-height: var(--page_height);
+  padding: 1em 0;
+}

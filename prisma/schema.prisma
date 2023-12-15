@@ -304,7 +304,7 @@ model Miscellaneous {
   email       String?   @default("nekedburkolok@gmail.com")
   //footer
   footerText  String?   @default("Ajánlatot kérek")
-  //matching color for all
+  //matching color for all use hex
   color       String?   @default("#ff450c")
 
   @@schema("public")

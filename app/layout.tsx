@@ -46,7 +46,6 @@ export default async function RootLayout({
   if (!data) {
     return <Loading />;
   }
-  console.log(data);
   return (
     <html lang="en">
       <body className={openSans.className}>

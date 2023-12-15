@@ -9,18 +9,13 @@ import Loading from "@/app/loading";
 const Footer: React.FunctionComponent<Miscellaneous> = ({ data }) => {
   const pathname = usePathname();
   const styler = (): string => {
-    if (pathname === "/contact") {
+    if (pathname === "/contact" || pathname.includes("cms")) {
       return `${styles.hide}`;
     } else {
       return `${styles.wrap}`;
     }
   };
-  // if (!data) {
-  //   return <Loading />;
-  // }
-  // if (data) {
-  //   const { footerText, color } = data[0];
-  // }
+
   return (
     <>
       {data && (

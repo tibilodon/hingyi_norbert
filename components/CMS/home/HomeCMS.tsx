@@ -25,12 +25,6 @@ const HomeCMS: React.FunctionComponent<any> = ({ data }) => {
   const [imageName, setImageName] = useState<string>("");
   console.log(img);
   useEffect(() => {
-    // if (Array.isArray(data)) {
-    //   setForm((prevVals: any) => ({
-    //     ...prevVals,
-    //     imgName: String(new Date().getTime()),
-    //   }));
-    // }
     const channel = supabase
       .channel("realtime home")
       .on(
@@ -409,7 +403,7 @@ const HomeCMS: React.FunctionComponent<any> = ({ data }) => {
             }
             value={color}
           />
-          <label> szín csere</label>
+          <label>{`Jelenlegi szín: ${color}. Szín változtatás`}</label>
         </span>
         <span>
           <button onClick={submitHandler}>

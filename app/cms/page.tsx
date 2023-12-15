@@ -31,8 +31,9 @@ export default async function Cms() {
           kattints a <strong>MENTÉS</strong> gombra
         </p>
         <h2>Módosítható oldalak:</h2>
-        <span>
+        <span className={styles.links}>
           <Link href={"/cms/home"}>Főoldal</Link>
+          <Link href={"/cms/misc"}>Egyéb</Link>
         </span>
       </div>
     </>
