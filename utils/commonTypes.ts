@@ -22,7 +22,24 @@ type Home = {
         phoneNumber: string | null;
         profession: string | null;
         user_id: string | null;
+        color: string | null;
       }[]
     | null;
 };
-export type { Home };
+
+type Miscellaneous = {
+  data:
+    | {
+        color: string | null;
+        created_at: string;
+        email: string | null;
+        footerText: string | null;
+        id: number;
+        phoneNumber: string | null;
+        updated_at: string | null;
+        user_id: string | null;
+      }[]
+    | null;
+};
+
+export type { Home, Miscellaneous };

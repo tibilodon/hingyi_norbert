@@ -1,16 +1,24 @@
 import styles from "./permanentBar.module.css";
 import Image from "next/image";
-import phone from "@/public/phone.svg";
 import white_phone from "@/public/white_phone.svg";
+import { Miscellaneous } from "@/utils/commonTypes";
+import Loading from "@/app/loading";
 //TODO:add callable func
 
-type Props = {};
+const PermanentBar: React.FunctionComponent<Miscellaneous> = ({ data }) => {
+  // const phoneNum = "06 30 716 9769";
 
-const PermanentBar = (props: Props) => {
-  const phoneNum = "06 30 716 9769";
+  if (!data) {
+    return <Loading />;
+  }
+
+  const { phoneNumber, email, color } = data[0];
   return (
     <>
-      <div className={styles.wrap}>
+      <div
+        style={color ? { backgroundColor: color } : {}}
+        className={styles.wrap}
+      >
         <span>
           <Image
             src={white_phone}
@@ -19,11 +27,11 @@ const PermanentBar = (props: Props) => {
             alt="phone icon"
             className={styles.icon}
           />
-          <a href={`tel:${phoneNum}`}>
-            <h4>{phoneNum}</h4>
+          <a href={`tel:${phoneNumber}`}>
+            <h4>{phoneNumber}</h4>
           </a>
         </span>
-        <a href="mailto:nekedburkolok@gmail.com">nekedburkolok@gmail.com</a>
+        <a href={`mailto:${email}`}>{email}</a>
       </div>
     </>
   );

@@ -1,9 +1,9 @@
 .wrap > * {
   font-weight: 500;
 }
-.active {
+/* .active {
   color: var(--orange2);
 }
 .inactive {
   color: var(--black);
-}
+} */

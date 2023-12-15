@@ -1,5 +1,4 @@
 .wrap {
-  /* background-color: var(--white); */
   text-align: center;
   padding: 0.5em 2em;
   display: flex;
@@ -10,4 +9,7 @@
   position: fixed;
   bottom: 0;
   width: 100%;
+}
+.hide {
+  display: none;
 }

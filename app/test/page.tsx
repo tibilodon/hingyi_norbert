@@ -35,8 +35,8 @@ export default async function ServerComponent() {
     redirect("/unauthenticated");
   }
 
-  const { data: image } = await supabase.storage.from("images").list("/");
-  console.log(image);
+  // const { data: image } = await supabase.storage.from("images").list("/");
+  // console.log(image);
   // .getPublicUrl("landing");
   // const { data: testUpdate } = await supabase.storage
   //   .from("images")

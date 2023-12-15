@@ -2,28 +2,44 @@
 import styles from "./linker.module.css";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+import { useAppProvider } from "@/utils/appContext";
 
 type Props = { path: string; label: string };
 
-const Linker: React.FunctionComponent<Props> = ({ path, label }) => {
+const Liker: React.FunctionComponent<Props> = ({ path, label }) => {
+  const { color } = useAppProvider();
   const pathname = usePathname();
 
-  const styler = (): string => {
-    if (path === pathname) {
-      return `${styles.active}`;
-    } else {
-      return `${styles.inactive}`;
-    }
-  };
+  // const styler = (): string => {
+  //   if (path === pathname) {
+  //     return `${styles.active}`;
+  //   } else {
+  //     return `${styles.inactive}`;
+  //   }
+  // };
+
+  // const styler = (): string => {
+  //   if (path === pathname) {
+  //     return   {`kgj`};
+  //   } else {
+  //     return {`${styles.inactive}`};
+  //   }
+  // };
   return (
     <>
-      <div className={styles.wrap}>
-        <Link href={path}>
-          <h4 className={styler()}>{label}</h4>
-        </Link>
-      </div>
+      <Link href={path}>
+        <h4
+          style={
+            path === pathname
+              ? { color: `${color}` }
+              : { color: "var(--black)" }
+          }
+        >
+          {label}
+        </h4>
+      </Link>
     </>
   );
 };
 
-export default Linker;
+export default Liker;

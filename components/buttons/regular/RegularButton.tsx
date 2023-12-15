@@ -1,9 +1,9 @@
 import styles from "./regularButton.module.css";
 
 type Props = {
-  label: string;
+  label: string | null;
   type?: "button" | "submit" | "reset";
-  color?: string;
+  color?: string | null;
 };
 
 const RegularButton: React.FunctionComponent<Props> = ({

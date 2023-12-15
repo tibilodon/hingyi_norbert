@@ -5,6 +5,9 @@ import AppContextProvider from "@/utils/appContext";
 import MobileNavbar from "@/components/navbar/mobile/MobileNavbar";
 import RegularNavbar from "@/components/navbar/regular/RegularNavbar";
 import PermanentBar from "@/components/permanentBar/PermanentBar";
+import { supaCreateServerComponentClient } from "@/utils/supabaseClient";
+import Loading from "./loading";
+import Footer from "@/components/footer/Footer";
 
 //supabase
 
@@ -26,25 +29,39 @@ export const metadata: Metadata = {
     ],
   },
 };
-export default function RootLayout({
+
+const getBarData = async () => {
+  const supabase = await supaCreateServerComponentClient();
+  const { data: data } = await supabase.from("Miscellaneous").select();
+  return data;
+};
+
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const data = await getBarData();
+
+  if (!data) {
+    return <Loading />;
+  }
+  console.log(data);
   return (
     <html lang="en">
       <body className={openSans.className}>
         <AppContextProvider>
           <div className={"nav"}>
-            <PermanentBar />
+            <PermanentBar data={data} />
             <div className={"mobileNav"}>
-              <MobileNavbar />
+              <MobileNavbar data={data} />
             </div>
             <div className={"regularNav"}>
               <RegularNavbar />
             </div>
           </div>
           <div className={"content"}>{children}</div>
+          <Footer data={data} />
         </AppContextProvider>
       </body>
     </html>

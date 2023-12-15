@@ -30,24 +30,16 @@ export const metadata: Metadata = {
 export default async function Home() {
   const supabase = await supaCreateServerComponentClient();
   const { data: data } = await supabase.from("Home").select();
-  const { data: image } = supabase.storage
-    .from("images")
-    .getPublicUrl("landing");
-
-  console.log(image);
-
-  const wrapBackground: React.CSSProperties = {
-    background: `rgba(0, 0, 0, 0.2) url(${image.publicUrl})`,
-  };
   //add type
 
   // const resp = await getTest();
   // if (Array.isArray(resp)) {
   //   const { name, email, phone } = resp[0];
 
-  if (!data || !image) {
+  if (!data) {
     return <Loading />;
   }
+
   const {
     name,
     profession,
@@ -58,30 +50,26 @@ export default async function Home() {
     line1_2,
     line1_3,
     line1_4,
-    // //banner
-    // banner_hero,
-    // bannerBox_1_label,
-    // bannerBox_1_text,
-    // bannerBox_2_label,
-    // bannerBox_2_text,
-    // bannerBox_3_label,
-    // bannerBox_3_text,
-    // bannerBox_4_label,
-    // bannerBox_4_text,
+    color,
+    imgName,
   } = data[0];
+  const wrapBackground: React.CSSProperties = {
+    background: `rgba(0, 0, 0, 0.2) url(${imgName})`,
+  };
   return (
     <>
       <div className={styles.wideWrap}>
         <div className={styles.wrap} style={wrapBackground}>
           {/* <h2>{name}</h2> */}
           <h2>{name}</h2>
-          <h1>{profession}</h1>
+          <h1 style={{ borderLeft: `8px solid ${color}` }}>{profession}</h1>
           <div className={styles.btns}>
             <ButtonHome
               img={contact}
               label={btn1}
               path="/contact"
               outline={true}
+              color={color}
             />
             <a href={`tel:${phoneNumber}`}>
               <ButtonHome
@@ -112,7 +100,7 @@ export default async function Home() {
           <Banner data={data} />
         </span>
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
   // } else {

@@ -16,42 +16,14 @@ import { saveImageToBucket } from "@/utils/CMSHelpers";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import Loading from "@/app/loading";
 
-// type Props = {
-//   data:
-//     | {
-//         banner_hero: string;
-//         bannerBox_1_label: string;
-//         bannerBox_1_text: string;
-//         bannerBox_2_label: string;
-//         bannerBox_2_text: string;
-//         bannerBox_3_label: string;
-//         bannerBox_3_text: string;
-//         bannerBox_4_label: string;
-//         bannerBox_4_text: string;
-//         btn1: string;
-//         btn3: string;
-//         created_at: string;
-//         id: number;
-//         line1_1: string;
-//         line1_2: string;
-//         line1_3: string;
-//         line1_4: string;
-//         name: string;
-//         phoneNumber: string;
-//         profession: string;
-//         user_id: string;
-//       }[];
-
-// };
-
 const HomeCMS: React.FunctionComponent<any> = ({ data }) => {
-  console.log(data);
   const supabase = createClientComponentClient();
   const router = useRouter();
 
   const [form, setForm] = useState(data[0]);
-  const [img, setImg] = useState<File>();
-
+  const [img, setImg] = useState<File | null>(null);
+  const [imageName, setImageName] = useState<string>("");
+  console.log(img);
   useEffect(() => {
     // if (Array.isArray(data)) {
     //   setForm((prevVals: any) => ({
@@ -76,7 +48,7 @@ const HomeCMS: React.FunctionComponent<any> = ({ data }) => {
     return () => {
       supabase.removeChannel(channel);
     };
-  }, [router, supabase, data, img]);
+  }, [router, supabase]);
 
   // const [form, setForm] = useState<Home>(
   //   data[0] ?? {
@@ -116,21 +88,40 @@ const HomeCMS: React.FunctionComponent<any> = ({ data }) => {
     }));
   };
 
+  const imgUpdateHandler = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.currentTarget.files) {
+      const file = e.currentTarget.files[0];
+      setImg(file);
+
+      setImageName(String(new Date().getTime()));
+    }
+  };
+
+  const handleColorChange = (e: React.FormEvent<HTMLInputElement>) => {
+    const { id, value } = e.currentTarget;
+
+    setForm((prevVals: any) => ({
+      ...prevVals,
+      [id]: value,
+    }));
+  };
+
   const submitHandler = async () => {
     try {
+      if (img) {
+        await saveImageToBucket(data[0].imgName, supabase, imageName, img);
+      }
       await fetch("/api/cms/home", {
         method: "PUT",
-        body: JSON.stringify(form),
+        body: JSON.stringify({ form, imageName }),
       });
-      if (img) {
-        saveImageToBucket(supabase, form.imgName, img);
-      }
+      setImg(null);
+      setImageName("");
       router.refresh();
     } catch (error) {
       console.log(error);
     }
   };
-
   //add type
 
   // const resp = await getTest();
@@ -140,7 +131,9 @@ const HomeCMS: React.FunctionComponent<any> = ({ data }) => {
 
   // }
   const wrapBackground: React.CSSProperties = {
-    background: `rgba(0, 0, 0, 0.2) url(${data[0].imgName})`,
+    background: `rgba(0, 0, 0, 0.2) url(${
+      img ? URL.createObjectURL(img) : data[0].imgName
+    })`,
   };
 
   const {
@@ -163,27 +156,17 @@ const HomeCMS: React.FunctionComponent<any> = ({ data }) => {
     bannerBox_3_text,
     bannerBox_4_label,
     bannerBox_4_text,
+    color,
   } = form;
 
   if (!data) {
     return <Loading />;
   }
 
-  const imgUpdateHandler = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.currentTarget.files) {
-      const file = e.currentTarget.files[0];
-      setImg(file);
-      setForm((prevVals: any) => ({
-        ...prevVals,
-        imgName: String(new Date().getTime()),
-      }));
-    }
-  };
   return (
     <>
       <div className={styles.wideWrap}>
         <div className={styles.wrap} style={wrapBackground}>
-          {/* <h2>{name}</h2> */}
           <h2
             contentEditable
             suppressContentEditableWarning
@@ -192,7 +175,11 @@ const HomeCMS: React.FunctionComponent<any> = ({ data }) => {
           >
             {name}
           </h2>
+
           <h1
+            style={{
+              borderLeft: `8px solid ${color}`,
+            }}
             contentEditable
             suppressContentEditableWarning
             onBlur={onChangeHandler}
@@ -201,7 +188,11 @@ const HomeCMS: React.FunctionComponent<any> = ({ data }) => {
             {profession}
           </h1>
           <div className={styles.btns}>
-            <div className={`${styles.buttonHome} ${styles.outline}`}>
+            <div
+              // className={`${styles.buttonHome} ${styles.outline}`}
+              className={styles.buttonHome}
+              style={{ border: `5px solid ${color}` }}
+            >
               <Image
                 className={styles.icon}
                 width={20}
@@ -296,7 +287,7 @@ const HomeCMS: React.FunctionComponent<any> = ({ data }) => {
 
         <span className={styles.banner}>
           {/*TODO: <Banner /> */}
-          <div className={styles.bannerWrap}>
+          <div style={{ backgroundColor: color }} className={styles.bannerWrap}>
             <h2
               contentEditable
               suppressContentEditableWarning
@@ -398,24 +389,35 @@ const HomeCMS: React.FunctionComponent<any> = ({ data }) => {
       </div>
 
       <div className={styles.submit}>
-        <input
-          id="img"
-          style={{ display: "none" }}
-          type="file"
-          onChange={imgUpdateHandler}
-        />
-        <label htmlFor="img">Kép csere</label>
-        <button onClick={submitHandler}>
-          <strong>MENTÉS</strong>
-        </button>
+        <span>
+          <input
+            id="img"
+            style={{ display: "none" }}
+            type="file"
+            onChange={imgUpdateHandler}
+          />
+          <label htmlFor="img">Kép csere</label>
+        </span>
+        <span>
+          <input
+            id="color"
+            type="color"
+            onChange={
+              // (e: React.FormEvent<HTMLInputElement>) =>
+              // setColor(e.currentTarget.value)
+              handleColorChange
+            }
+            value={color}
+          />
+          <label> szín csere</label>
+        </span>
+        <span>
+          <button onClick={submitHandler}>
+            <strong>MENTÉS</strong>
+          </button>
+        </span>
       </div>
     </>
   );
-  // } else {
-  //   // Handle error response here
-  //   const msg = "error occured";
-  //   console.log("Error response-----------------------------:", resp);
-  //   return <Loading />;
-  // }
 };
 export default HomeCMS;

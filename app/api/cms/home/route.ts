@@ -7,8 +7,9 @@ export async function PUT(req: Request) {
   const supabase = createRouteHandlerClient({ cookies });
 
   const load = await req.json();
-  console.log(load);
+
   const {
+    id,
     name,
     profession,
     btn1,
@@ -28,8 +29,9 @@ export async function PUT(req: Request) {
     bannerBox_3_text,
     bannerBox_4_label,
     bannerBox_4_text,
+    color,
     imgName,
-  } = load;
+  } = load.form;
 
   try {
     const { data } = await supabase
@@ -54,10 +56,16 @@ export async function PUT(req: Request) {
         bannerBox_3_text: bannerBox_3_text,
         bannerBox_4_label: bannerBox_4_label,
         bannerBox_4_text: bannerBox_4_text,
-        imgName: `https://rjmxmwhnheymokiexmyb.supabase.co/storage/v1/object/public/images/${imgName}`,
+        //color
+        color: color,
+        //img
+        imgName:
+          load.imageName !== ""
+            ? process.env.STORAGE_BUCKET_URL + load.imageName
+            : imgName,
       })
       //follow this format
-      .match({ id: load.id });
+      .match({ id: id });
 
     return NextResponse.json(data);
   } catch (error) {

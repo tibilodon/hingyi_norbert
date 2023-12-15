@@ -7,6 +7,7 @@ type Props = {
   path?: string;
   img: string;
   outline: boolean;
+  color?: string | null;
 };
 
 const ButtonHome: React.FunctionComponent<Props> = ({
@@ -14,6 +15,7 @@ const ButtonHome: React.FunctionComponent<Props> = ({
   path,
   img,
   outline,
+  color,
 }) => {
   return (
     <>
@@ -21,8 +23,10 @@ const ButtonHome: React.FunctionComponent<Props> = ({
         <Link href={path}>
           <div
             className={
-              outline ? `${styles.wrap} ${styles.outline}` : styles.wrap
+              // outline ? `${styles.wrap} ${styles.outline}` : styles.wrap
+              styles.wrap
             }
+            style={outline ? { border: `5px solid ${color}` } : {}}
           >
             <Image
               className={styles.icon}

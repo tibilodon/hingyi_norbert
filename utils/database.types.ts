@@ -22,6 +22,7 @@ export interface Database {
           bannerBox_4_text: string | null
           btn1: string | null
           btn3: string | null
+          color: string | null
           created_at: string
           id: number
           imgName: string | null
@@ -47,6 +48,7 @@ export interface Database {
           bannerBox_4_text?: string | null
           btn1?: string | null
           btn3?: string | null
+          color?: string | null
           created_at?: string
           id?: number
           imgName?: string | null
@@ -72,6 +74,7 @@ export interface Database {
           bannerBox_4_text?: string | null
           btn1?: string | null
           btn3?: string | null
+          color?: string | null
           created_at?: string
           id?: number
           imgName?: string | null
@@ -82,6 +85,39 @@ export interface Database {
           name?: string | null
           phoneNumber?: string | null
           profession?: string | null
+          updated_at?: string | null
+          user_id?: string | null
+        }
+        Relationships: []
+      }
+      Miscellaneous: {
+        Row: {
+          color: string | null
+          created_at: string
+          email: string | null
+          footerText: string | null
+          id: number
+          phoneNumber: string | null
+          updated_at: string | null
+          user_id: string | null
+        }
+        Insert: {
+          color?: string | null
+          created_at?: string
+          email?: string | null
+          footerText?: string | null
+          id?: number
+          phoneNumber?: string | null
+          updated_at?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          color?: string | null
+          created_at?: string
+          email?: string | null
+          footerText?: string | null
+          id?: number
+          phoneNumber?: string | null
           updated_at?: string | null
           user_id?: string | null
         }

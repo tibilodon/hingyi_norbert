@@ -23,10 +23,14 @@ const Banner: React.FunctionComponent<Home> = ({ data }) => {
     bannerBox_3_text,
     bannerBox_4_label,
     bannerBox_4_text,
+    color,
   } = data[0];
   return (
     <>
-      <div className={styles.wrap}>
+      <div
+        className={styles.wrap}
+        style={color ? { backgroundColor: color } : {}}
+      >
         <h2>{banner_hero}</h2>
         <BannerBox
           img={tiles}
