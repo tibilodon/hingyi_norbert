@@ -9,6 +9,142 @@ export type Json =
 export interface Database {
   public: {
     Tables: {
+      About: {
+        Row: {
+          created_at: string
+          hero: string | null
+          id: number
+          image: string | null
+          name: string | null
+          profession: string | null
+          updated_at: string | null
+          user_id: string | null
+          work_card_1: string | null
+          work_card_2: string | null
+        }
+        Insert: {
+          created_at?: string
+          hero?: string | null
+          id?: number
+          image?: string | null
+          name?: string | null
+          profession?: string | null
+          updated_at?: string | null
+          user_id?: string | null
+          work_card_1?: string | null
+          work_card_2?: string | null
+        }
+        Update: {
+          created_at?: string
+          hero?: string | null
+          id?: number
+          image?: string | null
+          name?: string | null
+          profession?: string | null
+          updated_at?: string | null
+          user_id?: string | null
+          work_card_1?: string | null
+          work_card_2?: string | null
+        }
+        Relationships: []
+      }
+      About_content_lowers: {
+        Row: {
+          created_at: string
+          id: number
+          table_id: number
+          text: string | null
+          updated_at: string | null
+          user_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          id?: number
+          table_id: number
+          text?: string | null
+          updated_at?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          id?: number
+          table_id?: number
+          text?: string | null
+          updated_at?: string | null
+          user_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "About_content_lowers_table_id_fkey"
+            columns: ["table_id"]
+            isOneToOne: false
+            referencedRelation: "About"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
+      About_content_uppers: {
+        Row: {
+          created_at: string
+          id: number
+          table_id: number
+          text: string | null
+          updated_at: string | null
+          user_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          id?: number
+          table_id: number
+          text?: string | null
+          updated_at?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          id?: number
+          table_id?: number
+          text?: string | null
+          updated_at?: string | null
+          user_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "About_content_uppers_table_id_fkey"
+            columns: ["table_id"]
+            isOneToOne: false
+            referencedRelation: "About"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
+      Contact: {
+        Row: {
+          created_at: string
+          description: string | null
+          hero: string | null
+          id: number
+          updated_at: string | null
+          user_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          hero?: string | null
+          id?: number
+          updated_at?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          hero?: string | null
+          id?: number
+          updated_at?: string | null
+          user_id?: string | null
+        }
+        Relationships: []
+      }
       Home: {
         Row: {
           banner_hero: string | null
@@ -149,6 +285,144 @@ export interface Database {
           user_id?: string | null
         }
         Relationships: []
+      }
+      Portfolio: {
+        Row: {
+          created_at: string
+          description: string | null
+          hero: string | null
+          id: number
+          updated_at: string | null
+          user_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          hero?: string | null
+          id?: number
+          updated_at?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          hero?: string | null
+          id?: number
+          updated_at?: string | null
+          user_id?: string | null
+        }
+        Relationships: []
+      }
+      Portfolio_Images: {
+        Row: {
+          created_at: string
+          description: string | null
+          id: number
+          image: string | null
+          position: number | null
+          table_id: number
+          updated_at: string | null
+          user_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          id?: number
+          image?: string | null
+          position?: number | null
+          table_id: number
+          updated_at?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          id?: number
+          image?: string | null
+          position?: number | null
+          table_id?: number
+          updated_at?: string | null
+          user_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "Portfolio_Images_table_id_fkey"
+            columns: ["table_id"]
+            isOneToOne: false
+            referencedRelation: "Portfolio"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
+      SecondWorkCardContents: {
+        Row: {
+          created_at: string
+          id: number
+          table_id: number
+          text: string | null
+          updated_at: string | null
+          user_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          id?: number
+          table_id: number
+          text?: string | null
+          updated_at?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          id?: number
+          table_id?: number
+          text?: string | null
+          updated_at?: string | null
+          user_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "SecondWorkCardContents_table_id_fkey"
+            columns: ["table_id"]
+            isOneToOne: false
+            referencedRelation: "About"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
+      WorkCardContents: {
+        Row: {
+          created_at: string
+          id: number
+          table_id: number
+          text: string | null
+          updated_at: string | null
+          user_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          id?: number
+          table_id: number
+          text?: string | null
+          updated_at?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          id?: number
+          table_id?: number
+          text?: string | null
+          updated_at?: string | null
+          user_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "WorkCardContents_table_id_fkey"
+            columns: ["table_id"]
+            isOneToOne: false
+            referencedRelation: "About"
+            referencedColumns: ["id"]
+          }
+        ]
       }
     }
     Views: {

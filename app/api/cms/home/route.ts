@@ -61,7 +61,8 @@ export async function PUT(req: Request) {
         //img
         imgName:
           load.imageName !== ""
-            ? process.env.STORAGE_BUCKET_URL + load.imageName
+            ? process.env.NEXT_PUBLIC_SUPABASE_URL +
+              `/storage/v1/object/public/home/${load.imageName}`
             : imgName,
       })
       //follow this format

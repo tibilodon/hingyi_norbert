@@ -6,24 +6,32 @@ import contact from "@/public/contact.svg";
 import mail from "@/public/mail.svg";
 import black_phone from "@/public/black_phone.svg";
 import { useRouter } from "next/navigation";
+// import { useRouter } from "next/router";
 import Image from "next/image";
 import tape from "@/public/tape.svg";
 import tiles from "@/public/tiles.svg";
 import van from "@/public/van.svg";
 import resto from "@/public/resto.svg";
-import { saveImageToBucket } from "@/utils/CMSHelpers";
+import { swapImage } from "@/utils/CMSHelpers";
 //supabase
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import Loading from "@/app/loading";
+import { NextApiResponse } from "next";
 
 const HomeCMS: React.FunctionComponent<any> = ({ data }) => {
   const supabase = createClientComponentClient();
   const router = useRouter();
 
+  const [prev, setPrev] = useState<React.CSSProperties>({
+    background: `rgba(0, 0, 0, 0.2) url(${data[0].imgName})`,
+    backgroundSize: "cover",
+    backgroundBlendMode: "darken",
+  });
+
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [form, setForm] = useState(data[0]);
   const [img, setImg] = useState<File | null>(null);
   const [imageName, setImageName] = useState<string>("");
-  console.log(img);
   useEffect(() => {
     const channel = supabase
       .channel("realtime home")
@@ -44,34 +52,6 @@ const HomeCMS: React.FunctionComponent<any> = ({ data }) => {
     };
   }, [router, supabase]);
 
-  // const [form, setForm] = useState<Home>(
-  //   data[0] ?? {
-  //     name: "Hingyi Norbert",
-  //     profession: "Burkoló",
-  //     btn1: "Kapcsolat",
-  //     phoneNumber: "06 30 716 9769",
-  //     btn3: "Tervek és képek kérése",
-  //     line1_1: "Hingyi Norbert Pest megyei burkoló 5 év tapasztalattal.",
-  //     line1_2: "Magán és céges megrendelőknek",
-  //     line1_3: "Bármilyen bonyolultságú és méretű felület burkolása",
-  //     line1_4: "Főként Budapesten és körzetében elérhető",
-  //     //banner
-  //     banner_hero: "Burkolói szolgáltatások",
-  //     bannerBox_1_label: "Általános burkolás",
-  //     bannerBox_1_text: "Falak, helyiségek és teljes létesítmények",
-  //     bannerBox_2_label: "Nagy és kis munkálatok",
-  //     bannerBox_2_text: "Kérjen ingyenes árajánlatot mérettől függetlenül",
-  //     bannerBox_3_label: "Szerszám és alapanyag biztosítása",
-  //     bannerBox_3_text: "Minden amire szüksége van, alacsony áron",
-  //     bannerBox_4_label: "Javítás és felújítás",
-  //     bannerBox_4_text: "A régi vagy sértült felület javítható",
-  //   }
-  // );
-
-  // const [form, setForm] = useState<Home>({
-  //   data: Array.isArray(data) && data.length > 0 ? data[0] : null,
-  // });
-
   const onChangeHandler = (
     e: React.FormEvent<HTMLHeadingElement> | FormEvent<HTMLLIElement>
   ): void => {
@@ -85,8 +65,15 @@ const HomeCMS: React.FunctionComponent<any> = ({ data }) => {
   const imgUpdateHandler = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.currentTarget.files) {
       const file = e.currentTarget.files[0];
-      setImg(file);
 
+      setImg(file);
+      setPrev({
+        background: `rgba(0, 0, 0, 0.2) url(${
+          file ? URL.createObjectURL(file) : data[0].imgName
+        })`,
+        backgroundSize: "cover",
+        backgroundBlendMode: "darken",
+      });
       setImageName(String(new Date().getTime()));
     }
   };
@@ -101,17 +88,23 @@ const HomeCMS: React.FunctionComponent<any> = ({ data }) => {
   };
 
   const submitHandler = async () => {
+    setIsLoading(true);
     try {
       if (img) {
-        await saveImageToBucket(data[0].imgName, supabase, imageName, img);
+        await swapImage("home", supabase, imageName, img, data[0].imgName);
+        console.log("nextresp");
       }
-      await fetch("/api/cms/home", {
+      const dataResp = await fetch("/api/cms/home", {
         method: "PUT",
         body: JSON.stringify({ form, imageName }),
       });
-      setImg(null);
-      setImageName("");
-      router.refresh();
+
+      if (dataResp.ok) {
+        setIsLoading(false);
+        setImg(null);
+        setImageName("");
+        router.refresh();
+      }
     } catch (error) {
       console.log(error);
     }
@@ -124,11 +117,6 @@ const HomeCMS: React.FunctionComponent<any> = ({ data }) => {
   // if (Array.isArray(data)) {
 
   // }
-  const wrapBackground: React.CSSProperties = {
-    background: `rgba(0, 0, 0, 0.2) url(${
-      img ? URL.createObjectURL(img) : data[0].imgName
-    })`,
-  };
 
   const {
     name,
@@ -153,14 +141,14 @@ const HomeCMS: React.FunctionComponent<any> = ({ data }) => {
     color,
   } = form;
 
-  if (!data) {
+  if (isLoading) {
     return <Loading />;
   }
 
   return (
     <>
       <div className={styles.wideWrap}>
-        <div className={styles.wrap} style={wrapBackground}>
+        <div className={styles.wrap} style={prev}>
           <h2
             contentEditable
             suppressContentEditableWarning
@@ -279,7 +267,7 @@ const HomeCMS: React.FunctionComponent<any> = ({ data }) => {
           </ul>
         </div>
 
-        <span className={styles.banner}>
+        <div className={styles.banner}>
           {/*TODO: <Banner /> */}
           <div style={{ backgroundColor: color }} className={styles.bannerWrap}>
             <h2
@@ -379,7 +367,7 @@ const HomeCMS: React.FunctionComponent<any> = ({ data }) => {
               </div>
             </div>
           </div>
-        </span>
+        </div>
       </div>
 
       <div className={styles.submit}>

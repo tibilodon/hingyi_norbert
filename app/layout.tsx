@@ -11,7 +11,7 @@ import Footer from "@/components/footer/Footer";
 
 //supabase
 
-const openSans = Open_Sans({ subsets: ["latin"] });
+const openSans = Open_Sans({ weight: "500", subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Burkoló - Hingyi Norbert",

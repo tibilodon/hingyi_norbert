@@ -2,8 +2,8 @@
   min-height: var(--page_height);
 
   /* background: rgba(0, 0, 0, 0.2) url(../public/landing_2.jpg); */
-  background-size: cover;
-  background-blend-mode: darken;
+  /* background-size: cover;
+  background-blend-mode: darken; */
   color: var(--white);
 
   /* height: 100%; */

@@ -7,7 +7,6 @@ import Banner from "@/components/banner/Banner";
 import Loading from "./loading";
 
 import { Metadata } from "next";
-import Footer from "@/components/footer/Footer";
 import { supaCreateServerComponentClient } from "@/utils/supabaseClient";
 
 export const metadata: Metadata = {
@@ -55,6 +54,8 @@ export default async function Home() {
   } = data[0];
   const wrapBackground: React.CSSProperties = {
     background: `rgba(0, 0, 0, 0.2) url(${imgName})`,
+    backgroundSize: "cover",
+    backgroundBlendMode: "darken",
   };
   return (
     <>
@@ -79,7 +80,7 @@ export default async function Home() {
               />
             </a>
 
-            {/*TODO:links to email app, highly inconvenient - nav to contact form and add template text*/}
+            {/*TODO: add template text*/}
             <ButtonHome
               img={mail}
               label={btn3}
@@ -103,10 +104,4 @@ export default async function Home() {
       {/* <Footer /> */}
     </>
   );
-  // } else {
-  //   // Handle error response here
-  //   const msg = "error occured";
-  //   console.log("Error response-----------------------------:", resp);
-  //   return <Loading />;
-  // }
 }

@@ -9,7 +9,6 @@ import RegularButton from "@/components/buttons/regular/RegularButton";
 import Link from "next/link";
 
 import { Metadata } from "next";
-import Footer from "@/components/footer/Footer";
 export const metadata: Metadata = {
   title: "Rólam - Burkoló | Hingyi Norbert",
   description: "Hingyi Norbert - Burkoló oldala",
@@ -28,8 +27,50 @@ export const metadata: Metadata = {
 };
 
 export default function About() {
-  const repair = ["Felújítás", "Átalakítás", "Felületek javítása"];
-  const fromScratch = ["Új helyiségek", "Bővített területek"];
+  const testContent = [
+    {
+      text: `✅ Számlaképes szolgáltatóként teljes körű pénzügyi átláthatóságot
+    biztosítok ügyfeleimnek.`,
+    },
+
+    {
+      text: ` ✅ Minden munkát korszerű technológiával
+    végzek, amely hosszú élettartamot és esztétikus kivitelezést
+    garantál.`,
+    },
+    {
+      text: ` ✅ Naprakész vagyok az új hidegburkolási anyagok és
+    trendek terén, így Ön mindig a legjobbat kapja tőlem.`,
+    },
+    {
+      text: `    ✅
+ Igényességem és precizitásom garanciát nyújt arra, hogy a munkám
+ minden részletében elégedett lesz.`,
+    },
+  ];
+
+  const testOtherContent = [
+    { text: ` 🏡 Lakossági és kereskedelmi hidegburkolás ` },
+    { text: `  🏢 Fürdőszoba és konyha felújítás` },
+    { text: `🏘️ Teraszok és kültéri burkolás` },
+    { text: `🚿 Zuhanykabin és csempézés` },
+    { text: `💼 Üzletek és irodák burkolása` },
+  ];
+
+  const repair = [
+    "Felújítás",
+    "Átalakítás",
+    "Felületek javítása",
+    "other item",
+    "other item",
+  ];
+  const fromScratch = [
+    "Új helyiségek",
+    "Bővített területek",
+    "other item",
+    "other item",
+    "other item",
+  ];
   return (
     <>
       <div className={styles.wrap}>
@@ -72,33 +113,21 @@ export default function About() {
             </h4>
             <h2>Miért válasszon engem?</h2>
             <span className={styles.content}>
-              <p>
-                ✅ Számlaképes szolgáltatóként teljes körű pénzügyi
-                átláthatóságot biztosítok ügyfeleimnek.
-              </p>
-              <p>
-                ✅ Minden munkát korszerű technológiával végzek, amely hosszú
-                élettartamot és esztétikus kivitelezést garantál.
-              </p>
-              <p>
-                ✅ Naprakész vagyok az új hidegburkolási anyagok és trendek
-                terén, így Ön mindig a legjobbat kapja tőlem.
-              </p>
-              <p>
-                ✅ Igényességem és precizitásom garanciát nyújt arra, hogy a
-                munkám minden részletében elégedett lesz.
-              </p>
+              {/*TODO: MAP OUT CONTENT, INTRODUCE CLIENT COMPONENT, ADD "INSERT NEW LINE" FUNCTIONALITY*/}
+              {testContent.map(({ text }, i) => {
+                return <p key={i}>{text}</p>;
+              })}
             </span>
             <h2>Szolgáltatásaim</h2>
             <span className={styles.contnet}>
-              <p>🏡 Lakossági és kereskedelmi hidegburkolás </p>
-              <p>🏢 Fürdőszoba és konyha felújítás</p>
-              <p>🏘️ Teraszok és kültéri burkolás</p>
-              <p>🚿 Zuhanykabin és csempézés</p>
-              <p>💼 Üzletek és irodák burkolása</p>
+              {/*TODO: MAP OUT CONTENT*/}
+              {testOtherContent.map(({ text }, i) => {
+                return <p key={i}>{text}</p>;
+              })}
             </span>
           </span>
         </div>
+        {/*TODO: max 5 items other than the header*/}
         <WorkCard
           header="Új lakások és házak"
           img={brandNew.src}
@@ -106,13 +135,6 @@ export default function About() {
         />
         <WorkCard header="Renováció" img={reno.src} list={repair} />
       </div>
-      {/* <div className={styles.quote}>
-        <h2>Ingyenes árajánlatot szeretnék</h2>
-        <Link className={styles.contact} href={"/contact"}>
-          <RegularButton label="Árajánlatot kérek" />
-        </Link>
-      </div> */}
-      <Footer />
     </>
   );
 }

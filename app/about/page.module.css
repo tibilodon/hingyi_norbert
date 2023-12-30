@@ -18,6 +18,13 @@
   flex-direction: column;
   gap: 0.3em;
 }
+/* .content::after {
+  content: ".";
+  visibility: hidden;
+  display: block;
+  height: 0;
+  clear: both;
+} */
 .quote {
   width: 100%;
   color: var(--white);

@@ -295,18 +295,20 @@ model Owner {
 }
 
 model Miscellaneous {
-  id          BigInt    @id @default(autoincrement())
-  user_id     String?   @default(dbgenerated("auth.uid()")) @db.Uuid
-  created_at  DateTime  @default(now()) @db.Timestamptz(6)
-  updated_at  DateTime? @db.Timestamptz(6)
-  //permanent bar + navbars
-  phoneNumber String?   @default("06 30 716 9769")
-  email       String?   @default("nekedburkolok@gmail.com")
-  //footer
-  footerText  String?   @default("Ajánlatot kérek")
-  //matching color for all use hex
-  color       String?   @default("#ff450c")
+  id         BigInt    @id @default(autoincrement())
+  user_id    String?   @default(dbgenerated("auth.uid()")) @db.Uuid
+  created_at DateTime  @default(now()) @db.Timestamptz(6)
+  updated_at DateTime? @db.Timestamptz(6)
 
+  //permanent bar + navbars
+  phoneNumber String? @default("06 30 716 9769")
+  email       String? @default("nekedburkolok@gmail.com")
+  //footer
+  footerText  String? @default("Ajánlatot kérek")
+  //matching color for all, use hex
+  color       String? @default("#ff450c")
+
+  //mandatory fields
   @@schema("public")
 }
 
@@ -316,31 +318,155 @@ model Home {
   updated_at DateTime? @db.Timestamptz(6)
   user_id    String?   @default(dbgenerated("auth.uid()")) @db.Uuid
 
-  name              String?
-  profession        String?
-  btn1              String?
-  phoneNumber       String?
-  btn3              String?
-  line1_1           String?
-  line1_2           String?
-  line1_3           String?
-  line1_4           String?
+  name              String? @default("Hingyi Norbert")
+  profession        String? @default("Burkoló")
+  btn1              String? @default("Kapcsolat")
+  phoneNumber       String? @default("06 30 716 9769")
+  btn3              String? @default("Tervek és képek kérése")
+  line1_1           String? @default("Hingyi Norbert Pest megyei burkoló 5 év tapasztalattal.")
+  line1_2           String? @default("Magán és céges megrendelőknek")
+  line1_3           String? @default("Bármilyen bonyolultságú és méretű felület burkolása")
+  line1_4           String? @default("Főként Budapesten és körzetében elérhető")
   //banner
-  banner_hero       String?
-  bannerBox_1_label String?
-  bannerBox_1_text  String?
-  bannerBox_2_label String?
-  bannerBox_2_text  String?
-  bannerBox_3_label String?
-  bannerBox_3_text  String?
-  bannerBox_4_label String?
-  bannerBox_4_text  String?
+  banner_hero       String? @default("Burkolói szolgáltatások")
+  bannerBox_1_label String? @default("Általános burkolás")
+  bannerBox_1_text  String? @default("Falak, helyiségek és teljes létesítmények")
+  bannerBox_2_label String? @default("Nagy és kis munkálatok")
+  bannerBox_2_text  String? @default("Kérjen ingyenes árajánlatot mérettől függetlenül")
+  bannerBox_3_label String? @default("Szerszám és alapanyag biztosítása")
+  bannerBox_3_text  String? @default("Minden amire szüksége van, alacsony áron")
+  bannerBox_4_label String? @default("Javítás és felújítás")
+  bannerBox_4_text  String? @default("A régi vagy sértült felület javítható")
 
   //img
   imgName String?
 
   //color
   color String? @default("#ff450c")
+
+  //mandatory fields
+  @@schema("public")
+}
+
+model Portfolio {
+  id          BigInt    @id @default(autoincrement())
+  user_id     String?   @default(dbgenerated("auth.uid()")) @db.Uuid
+  created_at  DateTime  @default(now()) @db.Timestamptz(6)
+  updated_at  DateTime? @db.Timestamptz(6)
+  hero        String?   @default("Burkolói munkák")
+  description String?   @default("A munkám során mindig a minőségre törekszem és arra, hogy az elkészült felület tökéletesen nézzen ki és időtálló legyen.")
+
+  images Portfolio_Images[]
+
+  @@schema("public")
+}
+
+//TODO: ADD RELATION WITH PORTFOLIO
+model Portfolio_Images {
+  id           BigInt     @id @default(autoincrement())
+  user_id      String?    @default(dbgenerated("auth.uid()")) @db.Uuid
+  created_at   DateTime   @default(now()) @db.Timestamptz(6)
+  updated_at   DateTime?  @db.Timestamptz(6)
+  //img
+  image        String?
+  description  String?
+  position     Int?
+  portfolio_id Portfolio? @relation(fields: [table_id], references: [id])
+  table_id     BigInt
+
+  @@schema("public")
+}
+
+model About {
+  id         BigInt    @id @default(autoincrement())
+  user_id    String?   @default(dbgenerated("auth.uid()")) @db.Uuid
+  created_at DateTime  @default(now()) @db.Timestamptz(6)
+  updated_at DateTime? @db.Timestamptz(6)
+
+  name       String? @default("Hingyi Norbert")
+  profession String? @default("Burkoló")
+  //img
+  image      String?
+  hero       String? @default("Professzionális Hidegburkolás Szolgáltatás Budapesten és Környékén")
+
+  work_card_1 String? @default("Új lakások és házak")
+  work_card_2 String? @default("Renováció")
+
+  //add relation to content
+
+  // content
+  upper_content About_content_uppers[]
+  lower_content About_content_lowers[]
+
+  //workCard
+  workCard_content        WorkCardContents[]
+  second_workCard_content SecondWorkCardContents[]
+
+  @@schema("public")
+}
+
+model WorkCardContents {
+  id         BigInt    @id @default(autoincrement())
+  user_id    String?   @default(dbgenerated("auth.uid()")) @db.Uuid
+  created_at DateTime  @default(now()) @db.Timestamptz(6)
+  updated_at DateTime? @db.Timestamptz(6)
+  text       String?
+
+  about_id About? @relation(fields: [table_id], references: [id])
+  table_id BigInt
+
+  @@schema("public")
+}
+
+model SecondWorkCardContents {
+  id         BigInt    @id @default(autoincrement())
+  user_id    String?   @default(dbgenerated("auth.uid()")) @db.Uuid
+  created_at DateTime  @default(now()) @db.Timestamptz(6)
+  updated_at DateTime? @db.Timestamptz(6)
+  text       String?
+
+  about_id About? @relation(fields: [table_id], references: [id])
+  table_id BigInt
+
+  @@schema("public")
+}
+
+//TODO: ADD RELATION WITH PORTFOLIO
+model About_content_uppers {
+  id         BigInt    @id @default(autoincrement())
+  user_id    String?   @default(dbgenerated("auth.uid()")) @db.Uuid
+  created_at DateTime  @default(now()) @db.Timestamptz(6)
+  updated_at DateTime? @db.Timestamptz(6)
+  text       String?
+
+  //relation
+  about_id About? @relation(fields: [table_id], references: [id])
+  table_id BigInt
+
+  @@schema("public")
+}
+
+//TODO: ADD RELATION WITH PORTFOLIO
+model About_content_lowers {
+  id         BigInt    @id @default(autoincrement())
+  user_id    String?   @default(dbgenerated("auth.uid()")) @db.Uuid
+  created_at DateTime  @default(now()) @db.Timestamptz(6)
+  updated_at DateTime? @db.Timestamptz(6)
+  text       String?
+
+  about_id About? @relation(fields: [table_id], references: [id])
+  table_id BigInt
+
+  @@schema("public")
+}
+
+model Contact {
+  id          BigInt    @id @default(autoincrement())
+  user_id     String?   @default(dbgenerated("auth.uid()")) @db.Uuid
+  created_at  DateTime  @default(now()) @db.Timestamptz(6)
+  updated_at  DateTime? @db.Timestamptz(6)
+  hero        String?   @default("Ajánlatok kérése & kapcsolatfelvétel")
+  description String?   @default("Az ingyenes árajánlat érdekében (illetve ha kérdése van) kérjük, töltse ki az alábbi űrlapot")
 
   @@schema("public")
 }

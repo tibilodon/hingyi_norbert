@@ -6,7 +6,6 @@ export async function POST(req: Request) {
     const data = await req.json();
     const { subject, text, html } = data;
     await sendEmail(subject, text, html);
-    console.log(data);
   } catch (error) {
     console.log("--ERROR--", error);
   }

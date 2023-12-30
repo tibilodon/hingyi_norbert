@@ -2,7 +2,7 @@
   height: calc(var(--page_height) / 3);
   background-size: cover;
   background-position: center;
-  background-color: rgba(0, 0, 0, 0.55);
+  background-color: rgba(0, 0, 0, 0.25);
   background-blend-mode: darken;
   color: var(--white);
   display: flex;
@@ -13,3 +13,8 @@
 .wrap h2 {
   margin-bottom: 0.3em;
 }
+/* @media (min-width: 1023px) {
+  .wrap {
+    background-position: 25% 25%;
+  }
+} */

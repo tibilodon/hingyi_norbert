@@ -33,6 +33,7 @@ export default async function Cms() {
         <h2>Módosítható oldalak:</h2>
         <span className={styles.links}>
           <Link href={"/cms/home"}>Főoldal</Link>
+          <Link href={"/cms/portfolio"}>Portfolio</Link>
           <Link href={"/cms/misc"}>Egyéb</Link>
         </span>
       </div>

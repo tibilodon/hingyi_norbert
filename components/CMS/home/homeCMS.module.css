@@ -2,11 +2,12 @@
   min-height: var(--page_height);
 
   /* background: rgba(0, 0, 0, 0.2) url(../../../public/landing_2.jpg); */
-  background-size: cover;
-  background-blend-mode: darken;
+  /* background-size: cover;
+  /* background-blend-mode: darken; */
   color: var(--white);
 
   /* height: 100%; */
+  /* background-repeat: no-repeat; */
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -70,7 +71,7 @@
 .bannerWrap {
   /* background-color: var(--orange2); */
   padding: var(--padding);
-  height: var(--page_height);
+  min-height: var(--page_height);
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -103,6 +104,7 @@
     width: 100%;
     padding: 0;
     background-color: none;
+    margin-bottom: 6em;
   }
   .wrap {
     width: 60%;
