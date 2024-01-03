@@ -85,6 +85,7 @@ const saveImageToBucket = async (
   supabase: SupabaseClient<any, "public", any>,
   imageData: NewImages
 ) => {
+  console.log("imageData", imageData);
   const uploadPromises = [];
 
   for (let index = 0; index < imageData.length; index++) {

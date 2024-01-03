@@ -1,7 +1,5 @@
 "use client";
-import Image from "next/image";
-import back from "@/public/backward.svg";
-import forward from "@/public/forward.svg";
+import styles from "./pagination.module.css";
 
 type Props = {
   currentPage: number;
@@ -18,16 +16,19 @@ const Pagination: React.FunctionComponent<Props> = ({
     <>
       <div>
         <button
+          className={currentPage === 1 ? styles.disabled : styles.btnPagi}
           onClick={() => paginate(currentPage - 1)}
           disabled={currentPage === 1}
         >
-          <Image width={50} height={50} alt="backwards icon" src={back} />
+          Vissza
         </button>
         {Array.from({ length: totalPages }, (_, i) => (
           <button
-            style={{
-              border: currentPage === i + 1 ? "5px solid green" : "",
-            }}
+            className={
+              currentPage === i + 1
+                ? `${styles.btnPage} ${styles.active}`
+                : styles.btnPage
+            }
             key={i}
             onClick={() => paginate(i + 1)}
           >
@@ -36,11 +37,13 @@ const Pagination: React.FunctionComponent<Props> = ({
         ))}
 
         <button
-          style={{ backgroundColor: "red" }}
+          className={
+            currentPage === totalPages ? styles.disabled : styles.btnPagi
+          }
           onClick={() => paginate(currentPage + 1)}
           disabled={currentPage === totalPages}
         >
-          <Image width={50} height={50} alt="backwards icon" src={forward} />
+          Tovább
         </button>
       </div>
     </>

@@ -10,7 +10,6 @@ import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 
 import { useRouter } from "next/navigation";
 import Loading from "@/app/loading";
-import { NextResponse } from "next/server";
 
 type Props = {
   data: {
@@ -56,11 +55,9 @@ const PortfolioCMS: React.FunctionComponent<Props> = ({ data, imgData }) => {
     useState<Props["imgData"]>(null);
   //newly selected images+desc+title
   const [newImages, setNewImages] = useState<NewImages>(null);
-  // const [img, setImg] = useState<File[] | null>(null);
-  // const [imageName, setImageName] = useState<string[]>([""]);
 
   useEffect(() => {
-    const channel = supabase
+    const textChannel = supabase
       .channel("realtime portfolio")
       .on(
         "postgres_changes",
@@ -73,11 +70,24 @@ const PortfolioCMS: React.FunctionComponent<Props> = ({ data, imgData }) => {
           router.refresh();
         }
       )
+      .on(
+        "postgres_changes",
+        {
+          event: "*", //insert,update,delete
+          schema: "public",
+          table: "Portfolio_Images",
+        },
+        () => {
+          router.refresh();
+        }
+      )
       .subscribe();
+
+    setImagesForm(imgData);
     return () => {
-      supabase.removeChannel(channel);
+      supabase.removeChannel(textChannel);
     };
-  }, [router, supabase]);
+  }, [router, supabase, imgData]);
 
   const onChangeHandler = (
     e: React.FormEvent<HTMLHeadingElement> | FormEvent<HTMLLIElement>
@@ -104,7 +114,6 @@ const PortfolioCMS: React.FunctionComponent<Props> = ({ data, imgData }) => {
       }
       return item;
     });
-    console.log("itemId,", itemId);
 
     setImagesForm(updatedItem ?? null);
   };
@@ -119,13 +128,12 @@ const PortfolioCMS: React.FunctionComponent<Props> = ({ data, imgData }) => {
       if (file) {
         const fileName = String(new Date().getTime());
         if (newImages === null) {
-          console.log("setting state");
           setNewImages([
             {
               file: file,
               fileName: fileName,
               description: "add desc",
-              position: 1,
+              position: 0,
             },
           ]);
         } else if (Array.isArray(newImages)) {
@@ -133,7 +141,7 @@ const PortfolioCMS: React.FunctionComponent<Props> = ({ data, imgData }) => {
             file: file,
             fileName: fileName,
             description: "add desc",
-            position: 1,
+            position: 0,
           };
           setNewImages((prev: any) => [...prev, newObj]);
         }
@@ -161,19 +169,28 @@ const PortfolioCMS: React.FunctionComponent<Props> = ({ data, imgData }) => {
 
   //delete img
   const deleteImg = (id: number) => {
+    console.log("id", id);
     const updateData = imagesForm?.filter((item) => item.id !== id);
+    console.log("updateData", updateData);
     const deleteData = imagesForm?.filter((item) => item.id === id);
     console.log("deleteData", deleteData);
+
     if (updateData?.length) {
       setImagesForm(updateData);
     } else {
       setImagesForm(null);
     }
-    if (deleteData?.length) {
+    if (deleteData?.length && toBeDeletedImages === null) {
       setToBeDeletedImages(deleteData);
     }
+    if (deleteData?.length && toBeDeletedImages !== null) {
+      setToBeDeletedImages((prevState) => [
+        ...prevState!!,
+        ...deleteData, // Spread the elements of deleteData array
+      ]);
+    }
   };
-
+  console.log("tobeDeleted out ogf vcon", toBeDeletedImages);
   //  delete new Image
   const deleteNewImg = (fileName: string) => {
     // const updateItem = newImages?.map((item) => {
@@ -188,48 +205,8 @@ const PortfolioCMS: React.FunctionComponent<Props> = ({ data, imgData }) => {
     }
   };
 
-  //TODO:
-  //pagination
-  const imgsPerPage = 2;
-  const [imgCounter, setImgCounter] = useState<number>(0);
-  const [currentPage, setCurrentPage] = useState<number>(1);
-  const [imgs, setImgs] = useState(imgData?.map(({ image }) => image));
-
-  useEffect(() => {
-    const originalImgCount = imagesForm?.length;
-    setImgCounter(Number(originalImgCount));
-
-    // if (newImages) {
-    //   // setImgs((prevState: any) => ({
-    //   //   ...prevState,
-    //   //   image: newImages.map(({ file }) => URL.createObjectURL(file!!)),
-    //   // }));
-    //   setImgs((prevState: any) => {
-    //     const updatedImages = newImages.map(({ file, fileName }) => ({
-    //       id: fileName,
-    //       image: URL.createObjectURL(file!!),
-    //     }));
-
-    //     return {
-    //       ...prevState,
-    //       updatedImages,
-    //     };
-    //   });
-    //   const newImgCount = newImages?.length;
-    //   setImgCounter(originalImgCount!! + newImgCount!!);
-    // }
-  }, [newImages, imagesForm]);
-
-  const indexOfLastItem = currentPage * imgsPerPage;
-  const indexOfFirstItem = indexOfLastItem - imgsPerPage;
-  const currentItems = imgs?.slice(indexOfFirstItem, indexOfLastItem);
-  const totalPages = Math.ceil(imgs!!.length / imgsPerPage);
-
-  const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
-
-  console.log("imgs", imgs);
-
   const submitHandler = async () => {
+    setIsLoading(true);
     try {
       let saveResp;
       let deleteResp;
@@ -253,17 +230,42 @@ const PortfolioCMS: React.FunctionComponent<Props> = ({ data, imgData }) => {
         deleteResp = delResp.ok;
       }
 
-      if ((saveResp && deleteResp) || saveResp || deleteResp) {
-        console.log("i am just saying either or");
-      }
-      // await fetch("/api/cms/portfolio", {
-      //   method: "PUT",
-      //   body: JSON.stringify({ form }),
-      // });
+      // if ((saveResp && deleteResp) || saveResp || deleteResp) {
+      //   const resp = await fetch("/api/cms/portfolio", {
+      //     method: "PUT",
+      //     body: JSON.stringify({
+      //       form,
+      //       imagesForm,
+      //       newImages,
+      //       toBeDeletedImages,
+      //     }),
+      //   });
+      //   if (resp.ok) {
+      //     setNewImages(null);
+      //     setToBeDeletedImages(null);
+      //     setIsLoading(false);
+      //   }
+      // }
 
-      // setImg(null);
-      // setImageName([""]);
-      router.refresh();
+      const resp = await fetch("/api/cms/portfolio", {
+        method: "PUT",
+        body: JSON.stringify({
+          form,
+          imagesForm,
+          newImages,
+          toBeDeletedImages,
+        }),
+      });
+
+      if (resp.ok) {
+        router.refresh();
+
+        setNewImages(null);
+        setToBeDeletedImages(null);
+        setIsLoading(false);
+      }
+      // // setImageName([""]);
+      // router.refresh();
     } catch (error) {
       console.log(error);
     }
@@ -280,9 +282,10 @@ const PortfolioCMS: React.FunctionComponent<Props> = ({ data, imgData }) => {
 
   const { hero, description } = data[0];
 
-  if (!data || !imgData) {
+  if (!data || !imgData || isLoading) {
     return <Loading />;
   }
+
   return (
     <>
       <div className={styles.wrap}>
@@ -386,7 +389,7 @@ const PortfolioCMS: React.FunctionComponent<Props> = ({ data, imgData }) => {
             onChange={imgUpdateHandler}
           />
           {/*-------------------TODO: ADD STYLE FOR PAGINATIONÍ*/}
-          {currentItems && (
+          {/* {currentItems && (
             <div style={{ display: "flex", border: "3px solid pink" }}>
               {currentItems.map((item, index) => (
                 <div key={index}>
@@ -425,7 +428,7 @@ const PortfolioCMS: React.FunctionComponent<Props> = ({ data, imgData }) => {
                 </button>
               </div>
             </div>
-          )}
+          )} */}
           {/*TODO: ADD STYLE FOR PAGINATIONÍ-----------------*/}
 
           <label htmlFor="img">Kép hozzáadása</label>

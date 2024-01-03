@@ -46,14 +46,7 @@ export default async function Portfolio() {
     imgArrData.push(el.image!!);
     descArrData.push(el.description!!);
   });
-  // console.log("arrDatra", descArrData);
-  // const imgArr: string[] = [];
-  // // const imgArr: string[] = [bath_ext.src, toilet_new.src, shower_new.src];
-  // const descArr: string[] = [
-  //   "Fürdőszoba bővítés",
-  //   "Mellékhelyiség kialakítása",
-  //   "Fürdőszoba felújítás",
-  // ];
+
   return (
     <>
       <div className={styles.wrap}>

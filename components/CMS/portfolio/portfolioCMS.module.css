@@ -30,19 +30,21 @@
   justify-content: center;
 }
 .imgWrap {
-  border: 3px solid green;
   display: flex;
+  flex-wrap: wrap;
+  width: 100%;
   flex-direction: column;
   gap: 1em;
 }
 
 @media (min-width: 768px) {
   .wrap {
-    height: var(--page_height);
+    min-height: var(--page_height);
   }
   .imgWrap {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    flex-wrap: wrap;
   }
 }

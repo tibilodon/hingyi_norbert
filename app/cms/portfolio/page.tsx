@@ -5,6 +5,7 @@ import Loading from "@/app/loading";
 
 export default async function CMSPortfolio() {
   const supabase = await supaCreateServerComponentClient();
+
   const { data: data } = await supabase.from("Portfolio").select();
 
   if (!data) {
