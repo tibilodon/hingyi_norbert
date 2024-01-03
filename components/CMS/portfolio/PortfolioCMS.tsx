@@ -190,7 +190,6 @@ const PortfolioCMS: React.FunctionComponent<Props> = ({ data, imgData }) => {
       ]);
     }
   };
-  console.log("tobeDeleted out ogf vcon", toBeDeletedImages);
   //  delete new Image
   const deleteNewImg = (fileName: string) => {
     // const updateItem = newImages?.map((item) => {
@@ -230,6 +229,7 @@ const PortfolioCMS: React.FunctionComponent<Props> = ({ data, imgData }) => {
         deleteResp = delResp.ok;
       }
 
+      //TODO: add error handling
       // if ((saveResp && deleteResp) || saveResp || deleteResp) {
       //   const resp = await fetch("/api/cms/portfolio", {
       //     method: "PUT",
@@ -241,6 +241,7 @@ const PortfolioCMS: React.FunctionComponent<Props> = ({ data, imgData }) => {
       //     }),
       //   });
       //   if (resp.ok) {
+      //     router.refresh();
       //     setNewImages(null);
       //     setToBeDeletedImages(null);
       //     setIsLoading(false);
@@ -259,27 +260,14 @@ const PortfolioCMS: React.FunctionComponent<Props> = ({ data, imgData }) => {
 
       if (resp.ok) {
         router.refresh();
-
         setNewImages(null);
         setToBeDeletedImages(null);
         setIsLoading(false);
       }
-      // // setImageName([""]);
-      // router.refresh();
     } catch (error) {
       console.log(error);
     }
   };
-  //data
-  // const imgArrData: string[] = [];
-  // const descArrData: string[] = [];
-  // const imgId: number[] = [];
-  // imgData?.forEach((el) => {
-  //   imgArrData.push(el.image!!);
-  //   descArrData.push(el.description!!);
-  //   imgId.push(el.id!!);
-  // });
-
   const { hero, description } = data[0];
 
   if (!data || !imgData || isLoading) {
@@ -359,6 +347,7 @@ const PortfolioCMS: React.FunctionComponent<Props> = ({ data, imgData }) => {
                       >
                         {description}
                       </h1>
+                      <h1>Position: </h1>
                       <h1
                         contentEditable
                         suppressContentEditableWarning
@@ -366,7 +355,7 @@ const PortfolioCMS: React.FunctionComponent<Props> = ({ data, imgData }) => {
                         id="position"
                         style={{ textAlign: "center" }}
                       >
-                        {`Position: ${position}`}
+                        {position}
                       </h1>
                       <div className={styles.edit}>
                         <span onClick={() => deleteNewImg(fileName)}>

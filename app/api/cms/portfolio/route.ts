@@ -45,6 +45,7 @@ export async function PUT(req: Request, res: Response) {
 
       //  create new record(s) from newImages
       if (load.newImages !== null) {
+        console.log("NEW IMG DATA", load.newImages);
         const data = load.newImages?.map((item: any) => {
           return {
             table_id: 1,
@@ -62,7 +63,7 @@ export async function PUT(req: Request, res: Response) {
 
         //  handle error
         if (newImagesError) {
-          console.log("newImagesdata", newImagesError);
+          console.log(" ERROR---newImagesdata", newImagesError);
           return NextResponse.json(newImagesError);
         }
       }
