@@ -15,36 +15,54 @@ export interface Database {
           hero: string | null
           id: number
           image: string | null
+          lower_content_hero: string | null
           name: string | null
           profession: string | null
+          strong_hero: string | null
+          strong_text: string | null
           updated_at: string | null
+          upper_content_hero: string | null
           user_id: string | null
           work_card_1: string | null
+          work_card_1_image: string | null
           work_card_2: string | null
+          work_card_2_image: string | null
         }
         Insert: {
           created_at?: string
           hero?: string | null
           id?: number
           image?: string | null
+          lower_content_hero?: string | null
           name?: string | null
           profession?: string | null
+          strong_hero?: string | null
+          strong_text?: string | null
           updated_at?: string | null
+          upper_content_hero?: string | null
           user_id?: string | null
           work_card_1?: string | null
+          work_card_1_image?: string | null
           work_card_2?: string | null
+          work_card_2_image?: string | null
         }
         Update: {
           created_at?: string
           hero?: string | null
           id?: number
           image?: string | null
+          lower_content_hero?: string | null
           name?: string | null
           profession?: string | null
+          strong_hero?: string | null
+          strong_text?: string | null
           updated_at?: string | null
+          upper_content_hero?: string | null
           user_id?: string | null
           work_card_1?: string | null
+          work_card_1_image?: string | null
           work_card_2?: string | null
+          work_card_2_image?: string | null
         }
         Relationships: []
       }

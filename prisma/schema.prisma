@@ -389,22 +389,34 @@ model About {
   image      String?
   hero       String? @default("Professzionális Hidegburkolás Szolgáltatás Budapesten és Környékén")
 
-  work_card_1 String? @default("Új lakások és házak")
-  work_card_2 String? @default("Renováció")
-
   //add relation to content
 
   // content
-  upper_content About_content_uppers[]
-  lower_content About_content_lowers[]
+  strong_hero String? @default("🔨 Tisztelt Érdeklődő 🔨")
+  strong_text String? @default("Üdvözölöm az adatlapomon, 4 éves tapasztalattal és szenvedéllyel végzek hidegburkolási munkákat Budapesten és környékén. Szolgáltatásaimra a minőség és a precizitás a legmagasabb prioritás.")
+
+  upper_content_hero String?                @default("Miért válasszon engem?")
+  upper_content      About_content_uppers[]
+
+  lower_content_hero String?                @default("Szolgáltatásaim")
+  lower_content      About_content_lowers[]
 
   //workCard
+  //  #1
+  work_card_1       String? @default("Új lakások és házak")
+  work_card_1_image String?
+
+  //  #2
+  work_card_2       String? @default("Renováció")
+  work_card_2_image String?
+
   workCard_content        WorkCardContents[]
   second_workCard_content SecondWorkCardContents[]
 
   @@schema("public")
 }
 
+//  maxiumum of 5 items
 model WorkCardContents {
   id         BigInt    @id @default(autoincrement())
   user_id    String?   @default(dbgenerated("auth.uid()")) @db.Uuid
@@ -418,6 +430,7 @@ model WorkCardContents {
   @@schema("public")
 }
 
+//  maxiumum of 5 items
 model SecondWorkCardContents {
   id         BigInt    @id @default(autoincrement())
   user_id    String?   @default(dbgenerated("auth.uid()")) @db.Uuid

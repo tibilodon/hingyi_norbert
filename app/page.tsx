@@ -29,11 +29,6 @@ export const metadata: Metadata = {
 export default async function Home() {
   const supabase = await supaCreateServerComponentClient();
   const { data: data } = await supabase.from("Home").select();
-  //add type
-
-  // const resp = await getTest();
-  // if (Array.isArray(resp)) {
-  //   const { name, email, phone } = resp[0];
 
   if (!data) {
     return <Loading />;

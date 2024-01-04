@@ -1,6 +1,6 @@
 import styles from "./workCard.module.css";
 
-type Props = { header: string; list: string[]; img: string };
+type Props = { header: string; list: any[]; img: string };
 
 const WorkCard: React.FunctionComponent<Props> = ({ header, list, img }) => {
   const bgImage: React.CSSProperties = {
@@ -10,9 +10,10 @@ const WorkCard: React.FunctionComponent<Props> = ({ header, list, img }) => {
     <>
       <div style={bgImage} className={styles.wrap}>
         <h2>{header}</h2>
-        {list.map((el: string, i: number) => {
-          return <h3 key={i}>{el}</h3>;
-        })}
+        {list &&
+          list.map((el: string, i: number) => {
+            return <h3 key={i}>{el}</h3>;
+          })}
       </div>
     </>
   );
