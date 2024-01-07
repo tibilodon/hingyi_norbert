@@ -207,6 +207,7 @@ const PortfolioCMS: React.FunctionComponent<Props> = ({ data, imgData }) => {
   const submitHandler = async () => {
     setIsLoading(true);
     try {
+      //TODO:add error handling
       let saveResp;
       let deleteResp;
       //save images
@@ -228,25 +229,6 @@ const PortfolioCMS: React.FunctionComponent<Props> = ({ data, imgData }) => {
         );
         deleteResp = delResp.ok;
       }
-
-      //TODO: add error handling
-      // if ((saveResp && deleteResp) || saveResp || deleteResp) {
-      //   const resp = await fetch("/api/cms/portfolio", {
-      //     method: "PUT",
-      //     body: JSON.stringify({
-      //       form,
-      //       imagesForm,
-      //       newImages,
-      //       toBeDeletedImages,
-      //     }),
-      //   });
-      //   if (resp.ok) {
-      //     router.refresh();
-      //     setNewImages(null);
-      //     setToBeDeletedImages(null);
-      //     setIsLoading(false);
-      //   }
-      // }
 
       const resp = await fetch("/api/cms/portfolio", {
         method: "PUT",
@@ -377,48 +359,6 @@ const PortfolioCMS: React.FunctionComponent<Props> = ({ data, imgData }) => {
             type="file"
             onChange={imgUpdateHandler}
           />
-          {/*-------------------TODO: ADD STYLE FOR PAGINATIONÍ*/}
-          {/* {currentItems && (
-            <div style={{ display: "flex", border: "3px solid pink" }}>
-              {currentItems.map((item, index) => (
-                <div key={index}>
-                  <Image
-                    width={200}
-                    height={250}
-                    src={item!!}
-                    alt={`portfolio image number ${index}`}
-                  />
-                </div>
-              ))}
-              <div>
-                <button
-                  onClick={() => paginate(currentPage - 1)}
-                  disabled={currentPage === 1}
-                >
-                  Previous
-                </button>
-                {Array.from({ length: totalPages }, (_, i) => (
-                  <button
-                    style={{
-                      border: currentPage === i + 1 ? "5px solid green" : "",
-                    }}
-                    key={i}
-                    onClick={() => paginate(i + 1)}
-                  >
-                    {i + 1}
-                  </button>
-                ))}
-
-                <button
-                  onClick={() => paginate(currentPage + 1)}
-                  disabled={currentPage === totalPages}
-                >
-                  Next
-                </button>
-              </div>
-            </div>
-          )} */}
-          {/*TODO: ADD STYLE FOR PAGINATIONÍ-----------------*/}
 
           <label htmlFor="img">Kép hozzáadása</label>
         </span>

@@ -31,6 +31,7 @@ export default async function About() {
   //  main data
   const { data: aboutData } = await supabase.from("About").select();
 
+  //  load barrier
   if (!aboutData) {
     return <Loading />;
   }
@@ -76,6 +77,7 @@ export default async function About() {
     .select()
     .match({ table_id: id });
 
+  //  load barrier
   if (!lowerContent || !upperContent || !secondCardData || !cardData) {
     return <Loading />;
   }
@@ -84,20 +86,6 @@ export default async function About() {
 
   const card_2_arr = secondCardData.map(({ text }) => text);
 
-  const repair = [
-    "Felújítás",
-    "Átalakítás",
-    "Felületek javítása",
-    "other item",
-    "other item",
-  ];
-  const fromScratch = [
-    "Új helyiségek",
-    "Bővített területek",
-    "other item",
-    "other item",
-    "other item",
-  ];
   return (
     <>
       <div className={styles.wrap}>

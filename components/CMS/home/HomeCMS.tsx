@@ -16,7 +16,6 @@ import { swapImage } from "@/utils/CMSHelpers";
 //supabase
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import Loading from "@/app/loading";
-import { NextApiResponse } from "next";
 
 const HomeCMS: React.FunctionComponent<any> = ({ data }) => {
   const supabase = createClientComponentClient();
@@ -53,7 +52,7 @@ const HomeCMS: React.FunctionComponent<any> = ({ data }) => {
   }, [router, supabase]);
 
   const onChangeHandler = (
-    e: React.FormEvent<HTMLHeadingElement> | FormEvent<HTMLLIElement>
+    e: React.FormEvent<HTMLHeadingElement> | React.FormEvent<HTMLLIElement>
   ): void => {
     const { id, textContent } = e.currentTarget;
     setForm((prevVals: any) => ({
@@ -91,22 +90,34 @@ const HomeCMS: React.FunctionComponent<any> = ({ data }) => {
     setIsLoading(true);
     try {
       if (img) {
-        await swapImage("home", supabase, imageName, img, data[0].imgName);
-        console.log("nextresp");
-      }
-      const dataResp = await fetch("/api/cms/home", {
-        method: "PUT",
-        body: JSON.stringify({ form, imageName }),
-      });
+        const saveImg = await swapImage(
+          "home",
+          supabase,
+          imageName,
+          img,
+          data[0].imgName
+        );
+        //img replaced
+        if (saveImg!!.ok) {
+          const dataResp = await fetch("/api/cms/home", {
+            method: "PUT",
+            body: JSON.stringify({ form, imageName }),
+          });
 
-      if (dataResp.ok) {
-        setIsLoading(false);
-        setImg(null);
-        setImageName("");
-        router.refresh();
+          if (dataResp.ok) {
+            setIsLoading(false);
+            setImg(null);
+            setImageName("");
+            router.refresh();
+          }
+          //handle error
+        } else {
+          router.push("/error");
+        }
       }
     } catch (error) {
       console.log(error);
+      router.push("/error");
     }
   };
   //add type

@@ -10,30 +10,37 @@ const swapImage = async (
 ) => {
   try {
     //delete
+    let delImgResp;
     if (prevImage) {
       const removeImage = prevImage.substring(prevImage.lastIndexOf("/") + 1);
 
-      console.log("removeimage", removeImage);
       // const { data: delImage } = await supabase.storage
       //   .from(bucketName)
       //   .remove([`${removeImage}`]);
-      await supabase.storage.from(bucketName).remove([`${removeImage}`]);
+      const delImg = await supabase.storage
+        .from(bucketName)
+        .remove([`${removeImage}`]);
+      delImgResp = delImg.data;
     }
     //then upload
-    const { data, error } = await supabase.storage
-      .from(bucketName)
-      .upload(`/${imageTitle}`, file);
+    if (delImgResp) {
+      const { data, error } = await supabase.storage
+        .from(bucketName)
+        .upload(`/${imageTitle}`, file);
 
-    //  log error if any
-    if (error) {
-      console.log("error at file upload", error);
-      return error;
+      //  log error if any
+      if (data) {
+        return NextResponse.json(data);
+      }
+      if (error) {
+        console.log("error at file upload", error);
+        return NextResponse.json(error);
+      }
+      //  otherwise, return data
     }
-    //  otherwise, return data
-
-    return NextResponse.json(data);
   } catch (error) {
     console.log(error);
+    return NextResponse.json(error);
   }
 };
 

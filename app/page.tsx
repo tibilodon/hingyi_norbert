@@ -52,6 +52,7 @@ export default async function Home() {
     backgroundSize: "cover",
     backgroundBlendMode: "darken",
   };
+
   return (
     <>
       <div className={styles.wideWrap}>
