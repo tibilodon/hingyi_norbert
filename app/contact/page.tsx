@@ -1,6 +1,8 @@
 import InputForm from "@/components/formInput/inputForm/InputForm";
 import styles from "./page.module.css";
 import Divider from "@/components/divider/Divider";
+import Loading from "../loading";
+import { supaCreateServerComponentClient } from "@/utils/supabaseClient";
 
 import { Metadata } from "next";
 export const metadata: Metadata = {
@@ -21,13 +23,18 @@ export const metadata: Metadata = {
 };
 
 export default async function Contact() {
-  const other = `Az ingyenes árajánlat érdekében (illetve ha kérdése van) kérjük, töltse ki az alábbi űrlapot`;
+  const supabase = await supaCreateServerComponentClient();
+  const { data: data } = await supabase.from("Contact").select();
+
+  if (!data) {
+    return <Loading />;
+  }
   return (
     <>
       <div className={styles.wrap}>
-        <h2>Ajánlatok kérése & kapcsolatfelvétel</h2>
+        <h2>{data[0].hero}</h2>
         <Divider />
-        <h4>{other}</h4>
+        <h4>{data[0].description}</h4>
         <div className={styles.form}>
           <InputForm />
         </div>

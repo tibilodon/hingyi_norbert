@@ -444,7 +444,6 @@ model SecondWorkCardContents {
   @@schema("public")
 }
 
-//TODO: ADD RELATION WITH PORTFOLIO
 model About_content_uppers {
   id         BigInt    @id @default(autoincrement())
   user_id    String?   @default(dbgenerated("auth.uid()")) @db.Uuid
@@ -459,7 +458,6 @@ model About_content_uppers {
   @@schema("public")
 }
 
-//TODO: ADD RELATION WITH PORTFOLIO
 model About_content_lowers {
   id         BigInt    @id @default(autoincrement())
   user_id    String?   @default(dbgenerated("auth.uid()")) @db.Uuid

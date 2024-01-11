@@ -1,6 +1,8 @@
 "use client";
 import styles from "./regularButton.module.css";
 import { useState } from "react";
+import { useAppProvider } from "@/utils/appContext";
+import Loading from "@/app/loading";
 
 type Props = {
   label: string | null;
@@ -13,7 +15,9 @@ const RegularButton: React.FunctionComponent<Props> = ({
   type,
   color,
 }) => {
+  const { color: provColor } = useAppProvider();
   const [isHovered, setIsHovered] = useState(false);
+  //TODO: useEffect can set color
 
   const handleHover = () => {
     setIsHovered(true);
@@ -24,10 +28,15 @@ const RegularButton: React.FunctionComponent<Props> = ({
   };
 
   const buttonStyles: React.CSSProperties = {
-    backgroundColor: color ? color : "",
+    backgroundColor: color ? color : provColor,
     transition: "filter 0.3s ease-in-out", // Add a transition for a smooth effect
     filter: isHovered ? "brightness(70%)" : "brightness(100%)", // Adjust brightness for faded effect
   };
+
+  if (!buttonStyles) {
+    return <Loading />;
+  }
+
   return (
     <>
       {/* <div className={styles.wrap}> */}

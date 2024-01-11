@@ -124,7 +124,6 @@ const InputForm = () => {
               placeHolder={"Üzenet"}
             />
             <div className={styles.submit}>
-              {/* <button type="submit">Send Enquiry</button> */}
               <RegularButton type="submit" label="Küldés" />
             </div>
           </form>

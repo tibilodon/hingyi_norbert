@@ -169,11 +169,8 @@ const PortfolioCMS: React.FunctionComponent<Props> = ({ data, imgData }) => {
 
   //delete img
   const deleteImg = (id: number) => {
-    console.log("id", id);
     const updateData = imagesForm?.filter((item) => item.id !== id);
-    console.log("updateData", updateData);
     const deleteData = imagesForm?.filter((item) => item.id === id);
-    console.log("deleteData", deleteData);
 
     if (updateData?.length) {
       setImagesForm(updateData);

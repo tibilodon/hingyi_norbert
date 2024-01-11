@@ -1,0 +1,21 @@
+.wrap {
+  min-height: var(--page_height);
+  background-color: var(--black);
+  color: var(--white);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  /* gap: 2em; */
+  justify-content: space-around;
+  padding: var(--padding_no_bottom);
+
+  text-align: center;
+}
+
+.wrap h4 {
+  margin-bottom: 1em;
+}
+.form {
+  width: 85%;
+}

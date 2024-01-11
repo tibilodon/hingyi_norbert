@@ -49,7 +49,7 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={openSans.className}>
-        <AppContextProvider>
+        <AppContextProvider data={data}>
           <div className={"nav"}>
             <PermanentBar data={data} />
             <div className={"mobileNav"}>

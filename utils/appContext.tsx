@@ -31,11 +31,21 @@ export const useAppProvider = () => {
 
 type ProviderProps = {
   children: React.ReactNode;
+  data: {
+    color: string | null;
+    created_at: string;
+    email: string | null;
+    footerText: string | null;
+    id: number;
+    phoneNumber: string | null;
+    updated_at: string | null;
+    user_id: string | null;
+  }[];
 };
-export default function AppContextProvider({ children }: ProviderProps) {
+export default function AppContextProvider({ children, data }: ProviderProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
-  const [color, setColor] = useState("red");
+  const [color, setColor] = useState(data[0].color!!);
 
   return (
     <AppContext.Provider

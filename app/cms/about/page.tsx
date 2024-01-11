@@ -24,7 +24,7 @@ export default async function CMSAbout() {
   if (!aboutData) {
     return <Loading />;
   }
-
+  const user = session.user.id;
   //  about table
   const { id } = aboutData[0];
 
@@ -57,20 +57,15 @@ export default async function CMSAbout() {
     return <Loading />;
   }
 
-  const card_1_data = cardData.map(({ text }) => text);
-
-  const card_2_data = secondCardData.map(({ text }) => text);
-
-  //TODO: pass in the first aboutData object
-
   return (
     <>
       <AboutCMS
+        userId={user}
         aboutData={aboutData[0]}
         lowerContent={lowerContent}
         upperContent={upperContent}
-        card_1_data={card_1_data}
-        card_2_data={card_2_data}
+        card_1_data={cardData}
+        card_2_data={secondCardData}
       />
     </>
   );

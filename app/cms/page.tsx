@@ -1,23 +1,17 @@
 import styles from "./page.module.css";
 import { supaServerComponentClientSession } from "@/utils/supabaseClient";
 import { redirect } from "next/navigation";
-import HomeTest from "../../components/CMS/home/HomeCMS";
 import Link from "next/link";
 
 export default async function Cms() {
   const session = await supaServerComponentClientSession();
-
-  // const { data: owner } = await supabase
-  //   .from("Owner")
-  //   .select()
-  //   //select based on criteria:
-  //   .match({ is_complete: false });
 
   if (!session) {
     redirect("/unauthenticated");
   }
 
   return (
+    //
     <>
       <div className={styles.wrap}>
         <h1>
@@ -35,6 +29,7 @@ export default async function Cms() {
           <Link href={"/cms/home"}>Főoldal</Link>
           <Link href={"/cms/portfolio"}>Portfólió</Link>
           <Link href={"/cms/about"}>Rólam</Link>
+          <Link href={"/cms/contact"}>Kapcsolat</Link>
           <Link href={"/cms/misc"}>Egyéb</Link>
         </span>
       </div>

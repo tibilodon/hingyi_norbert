@@ -3,8 +3,6 @@
 // @ts-nocheck
 import { ImageResponse } from "next/og";
 
-import g from "../../../public/opengraph-image.png";
-
 export const runtime = "edge";
 
 export async function GET(request: Request) {

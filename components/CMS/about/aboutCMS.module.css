@@ -42,3 +42,19 @@
   flex-direction: column;
   gap: 1em;
 }
+
+.cardWrap {
+  height: calc(var(--page_height) / 3);
+  background-size: cover;
+  background-position: center;
+  background-color: rgba(0, 0, 0, 0.25);
+  background-blend-mode: darken;
+  color: var(--white);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.cardWrap h2 {
+  margin-bottom: 0.3em;
+}
