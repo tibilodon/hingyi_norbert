@@ -34,7 +34,7 @@ export async function PUT(req: Request) {
   } = load.form;
 
   try {
-    const { data } = await supabase
+    const { data, error } = await supabase
       .from("Home")
       .update({
         name: name,
@@ -68,19 +68,13 @@ export async function PUT(req: Request) {
       //follow this format
       .match({ id: id });
 
-    return NextResponse.json(data);
+    if (error) {
+      console.log(error);
+      return NextResponse.json(error);
+    } else {
+      return NextResponse.json(data);
+    }
   } catch (error) {
-    console.log(error);
+    return NextResponse.json(error);
   }
 }
-
-//delete is not needed as only one record will be updated
-
-// export async function DELETE(req: Request) {
-//   console.log("delete got called");
-//   const supabase = createRouteHandlerClient({ cookies });
-//   const id = await req.json();
-//   const { data } = await supabase.from("Home").delete().match(id);
-
-//   return NextResponse.json(data);
-// }

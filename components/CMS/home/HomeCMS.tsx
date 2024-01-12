@@ -101,22 +101,21 @@ const HomeCMS: React.FunctionComponent<any> = ({ data, user }) => {
           data[0].imgName
         );
         //img replaced
-        if (saveImg!!.ok) {
-          const dataResp = await fetch("/api/cms/home", {
-            method: "PUT",
-            body: JSON.stringify({ form, imageName }),
-          });
+      }
+      const dataResp = await fetch("/api/cms/home", {
+        method: "PUT",
+        body: JSON.stringify({ form, imageName }),
+      });
 
-          if (dataResp.ok) {
-            setIsLoading(false);
-            setImg(null);
-            setImageName("");
-            router.refresh();
-          }
-          //handle error
-        } else {
-          router.push("/error");
-        }
+      if (dataResp.ok) {
+        setIsLoading(false);
+        setImg(null);
+        setImageName("");
+        router.refresh();
+      }
+      //handle error
+      else {
+        router.push("/error");
       }
     } catch (error) {
       console.log(error);
