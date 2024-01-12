@@ -24,7 +24,6 @@ const Footer: React.FunctionComponent<Miscellaneous> = ({ data }) => {
     <>
       {data && (
         <div className={styler()}>
-          {/* <h2>Ingyenes árajánlatot szeretnék</h2> */}
           <Link href={"/contact"}>
             <RegularButton label={data[0].footerText} color={data[0].color} />
           </Link>
