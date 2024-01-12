@@ -1,0 +1,17 @@
+.wrap {
+  /* min-height: var(--page_height); */
+  /* width: 2.5em; */
+  border: 2px solid red;
+  position: fixed;
+  overflow: hidden;
+  top: 50vh;
+  display: flex;
+  flex-direction: column;
+  /* align-self: center; */
+  z-index: 21;
+  background-color: white;
+  right: 0;
+}
+.hide {
+  display: none;
+}

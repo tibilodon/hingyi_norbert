@@ -12,6 +12,7 @@ import { useRouter } from "next/navigation";
 import Loading from "@/app/loading";
 
 type Props = {
+  user: string;
   data: {
     created_at: string;
     description: string | null;
@@ -42,9 +43,16 @@ type NewImages =
       position: number;
     }[]
   | null;
-const PortfolioCMS: React.FunctionComponent<Props> = ({ data, imgData }) => {
+const PortfolioCMS: React.FunctionComponent<Props> = ({
+  data,
+  imgData,
+  user,
+}) => {
   const supabase = createClientComponentClient();
   const router = useRouter();
+  if (!user) {
+    router.push("/unauthenticated");
+  }
 
   //portfolio table
   const [isLoading, setIsLoading] = useState<boolean>(false);

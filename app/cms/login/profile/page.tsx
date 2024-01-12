@@ -13,14 +13,15 @@ export default async function Profile() {
   return (
     <>
       <div className={styles.wrap}>
-        <LoginWrap>
-          <h1>hello {session.user.email}</h1>
-          <h1>You are logged in!</h1>
-          <Link href={"/cms"}>
-            <button>proceed to cms</button>
-          </Link>
-          <LogoutButton />
-        </LoginWrap>
+        {/* <LoginWrap> */}
+        <h1>{session.user.email} - Bejelentkezve</h1>
+        <Link href={"/cms"}>
+          <button>
+            <h1>Tobább a szerkesztéshez</h1>
+          </button>
+        </Link>
+        <LogoutButton />
+        {/* </LoginWrap> */}
       </div>
     </>
   );

@@ -1,13 +1,15 @@
 .wrap {
-  border: 2px solid black;
   min-height: var(--page_height);
   padding: var(--padding);
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-around;
 }
 .wrap span {
-  border: 1px solid var(--dark_blue2);
+  background-color: rgb(194, 187, 187);
+  padding: 2em;
+  /* border: 1px solid var(--dark_blue2); */
 }
 .links {
   display: flex;

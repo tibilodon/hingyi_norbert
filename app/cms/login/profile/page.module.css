@@ -1,13 +1,12 @@
 .wrap {
-  min-height: var(--page_height);
-  padding: var(--padding);
-  border: 2px solid red;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 2em;
+  height: var(--page_height);
 }
-.wrap h1 {
-  font-size: 3em;
+.wrap button {
+  background-color: rgb(93, 189, 93);
 }

@@ -1,5 +1,6 @@
 import ContactCMS from "@/components/CMS/contact/ContactCMS";
 import styles from "./page.module.css";
+import Loading from "@/app/loading";
 import {
   supaCreateServerComponentClient,
   supaServerComponentClientSession,
@@ -18,10 +19,15 @@ export default async function CMSContact() {
   if (!session) {
     redirect("/unauthenticated");
   }
+  const user = session.user.id;
+
+  if (!data) {
+    return <Loading />;
+  }
   return (
     <>
       <div className={styles.wrap}>
-        <ContactCMS data={data} />
+        <ContactCMS data={data} user={user} />
       </div>
     </>
   );

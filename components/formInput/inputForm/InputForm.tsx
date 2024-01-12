@@ -10,8 +10,18 @@ import { useRouter } from "next/navigation";
 import Loading from "@/app/loading";
 import ErrorContent from "@/components/error/ErrorContent";
 import RegularButton from "@/components/buttons/regular/RegularButton";
+import { usePathname } from "next/navigation";
 
 const InputForm = () => {
+  const pathname = usePathname();
+  const styler = (): string => {
+    if (pathname.includes("cms")) {
+      return `${styles.hide}`;
+    } else {
+      return `${styles.submit}`;
+    }
+  };
+
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
   const router = useRouter();
@@ -123,7 +133,7 @@ const InputForm = () => {
               onChangeHandler={onChangeHandler}
               placeHolder={"Üzenet"}
             />
-            <div className={styles.submit}>
+            <div className={styler()}>
               <RegularButton type="submit" label="Küldés" />
             </div>
           </form>

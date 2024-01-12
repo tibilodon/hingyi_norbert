@@ -13,7 +13,7 @@ export async function POST(request: Request) {
 
   await supabase.auth.signOut();
 
-  return NextResponse.redirect(`${requestUrl.origin}/login`, {
+  return NextResponse.redirect(`${requestUrl.origin}/cms/login`, {
     status: 301,
   });
 }

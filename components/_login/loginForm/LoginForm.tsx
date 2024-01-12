@@ -14,8 +14,8 @@ const LoginForm: React.FunctionComponent<Props> = () => {
           name="password"
           type="password"
         />
-        <LoginButton type="submit" label="SIGN IN" />
-        <LoginButton formAction="/api/auth/sign-up" label="Sign Up" />
+        <LoginButton type="submit" label="Bejelentkezés" />
+        {/* <LoginButton formAction="/api/auth/sign-up" label="Sign Up" /> */}
       </form>
     </>
   );

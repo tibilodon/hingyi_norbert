@@ -8,7 +8,7 @@ export default async function Login() {
   const session = await supaServerComponentClientSession();
 
   if (session) {
-    redirect("/login/profile");
+    redirect("/cms/login/profile");
   }
 
   return (

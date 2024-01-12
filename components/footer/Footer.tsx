@@ -9,7 +9,11 @@ import Loading from "@/app/loading";
 const Footer: React.FunctionComponent<Miscellaneous> = ({ data }) => {
   const pathname = usePathname();
   const styler = (): string => {
-    if (pathname === "/contact" || pathname.includes("cms")) {
+    if (
+      pathname === "/contact" ||
+      pathname.includes("cms") ||
+      pathname.includes("unauthenticated")
+    ) {
       return `${styles.hide}`;
     } else {
       return `${styles.wrap}`;

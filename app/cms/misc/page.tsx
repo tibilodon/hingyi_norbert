@@ -23,7 +23,7 @@ export default async function Misc() {
     <div className={styles.wrap}>
       <h1>hello misc</h1>
       <h1>THE ACTIVE MENU ITEM IS ALSO GETTING THE CHOSEN COLOR!!</h1>
-      <MiscCMS data={data} />
+      <MiscCMS session={session} data={data} />
     </div>
   );
 }

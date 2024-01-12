@@ -15,7 +15,7 @@ export default async function Unauthenticated() {
   return (
     <>
       <div className={styles.wrap}>
-        <h1>please sign in!!!4</h1>
+        <h1>Bejelentkezés szükséges!</h1>
         <LoginForm />
       </div>
     </>

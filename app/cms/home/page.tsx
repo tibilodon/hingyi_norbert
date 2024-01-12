@@ -18,9 +18,10 @@ export default async function CMSHome() {
   if (!session) {
     redirect("/unauthenticated");
   }
+  const user = session.user.id;
   return (
     <>
-      <HomeCMS data={data} />
+      <HomeCMS data={data} user={user} />
     </>
   );
 }

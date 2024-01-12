@@ -6,10 +6,14 @@ import white_phone from "@/public/white_phone.svg";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import Loading from "@/app/loading";
 import { useRouter } from "next/navigation";
+import Divider from "@/components/divider/Divider";
 
-const MiscCMS: React.FunctionComponent<any> = ({ data }) => {
+const MiscCMS: React.FunctionComponent<any> = ({ data, session }) => {
   const supabase = createClientComponentClient();
   const router = useRouter();
+  if (!session) {
+    router.push("/unauthenticated");
+  }
 
   const [form, setForm] = useState(data[0]);
   const [isHovered, setIsHovered] = useState(false);
@@ -117,7 +121,6 @@ const MiscCMS: React.FunctionComponent<any> = ({ data }) => {
         >
           {email}
         </p>
-        {/* <a href={`mailto:${email}`}>{email}</a> */}
       </div>
       <div className={styles.footerWrap}>
         <button

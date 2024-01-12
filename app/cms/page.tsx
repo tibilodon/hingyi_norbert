@@ -15,7 +15,7 @@ export default async function Cms() {
     <>
       <div className={styles.wrap}>
         <h1>
-          <strong>Hello ADMIN!</strong>
+          <strong>Helló Admin</strong>
         </h1>
         <p>
           Amennyiben az alábbi opciók egyikére kattintasz, úgy az az oldal fog

@@ -16,6 +16,10 @@
   gap: 1em;
   align-items: center;
 }
+
+.hide {
+  display: none;
+}
 @media (min-width: 768px) {
   .wrap form {
     width: 70%;

@@ -8,7 +8,7 @@ import PermanentBar from "@/components/permanentBar/PermanentBar";
 import { supaCreateServerComponentClient } from "@/utils/supabaseClient";
 import Loading from "./loading";
 import Footer from "@/components/footer/Footer";
-
+import CMSSidebar from "@/components/CMS/sidebar/CMSSidebar";
 //supabase
 
 const openSans = Open_Sans({ weight: "500", subsets: ["latin"] });
@@ -61,6 +61,7 @@ export default async function RootLayout({
           </div>
           <div className={"content"}>{children}</div>
           <Footer data={data} />
+          <CMSSidebar />
         </AppContextProvider>
       </body>
     </html>

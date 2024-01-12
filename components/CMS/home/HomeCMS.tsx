@@ -17,9 +17,12 @@ import { swapImage } from "@/utils/CMSHelpers";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import Loading from "@/app/loading";
 
-const HomeCMS: React.FunctionComponent<any> = ({ data }) => {
+const HomeCMS: React.FunctionComponent<any> = ({ data, user }) => {
   const supabase = createClientComponentClient();
   const router = useRouter();
+  if (!user) {
+    router.push("/unauthenticated");
+  }
 
   const [prev, setPrev] = useState<React.CSSProperties>({
     background: `rgba(0, 0, 0, 0.2) url(${data[0].imgName})`,

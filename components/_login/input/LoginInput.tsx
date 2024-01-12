@@ -15,9 +15,8 @@ const LoginInput: React.FunctionComponent<Props> = ({
   return (
     <>
       <div className={styles.wrap}>
-        <h1>LoginInput</h1>
         <label htmlFor={htmlFor}>{label}</label>
-        <input type={type} name={name} />
+        <input placeholder={label} type={type} name={name} />
       </div>
     </>
   );

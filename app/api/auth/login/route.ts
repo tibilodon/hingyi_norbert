@@ -20,7 +20,7 @@ export async function POST(request: Request) {
   });
 
   //  redirect after logged in
-  return NextResponse.redirect(requestUrl.origin + "/test", {
+  return NextResponse.redirect(requestUrl.origin + "/cms/login/profile", {
     status: 301,
   });
 }

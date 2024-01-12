@@ -82,6 +82,10 @@ const AboutCMS: React.FunctionComponent<Props> = ({
   card_2_data,
   userId,
 }) => {
+  const router = useRouter();
+  if (!userId) {
+    router.push("/unauthenticated");
+  }
   const [isLoading, setIsLoading] = useState<boolean>(false);
   //main data
   const [form, setForm] = useState(aboutData);
@@ -124,7 +128,6 @@ const AboutCMS: React.FunctionComponent<Props> = ({
   });
 
   const supabase = createClientComponentClient();
-  const router = useRouter();
   useEffect(() => {
     const channel = supabase
       .channel("realtime home")

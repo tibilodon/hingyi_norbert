@@ -1,3 +1,5 @@
 .wrap {
-  border: 2px solid palevioletred;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
 }
