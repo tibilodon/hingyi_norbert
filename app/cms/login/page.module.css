@@ -1,8 +1,14 @@
 .wrap {
   display: flex;
+  flex-direction: column;
+  gap: 2em;
   justify-content: center;
   align-items: center;
   width: 100%;
   min-height: var(--page_height);
   padding: var(--padding);
+}
+.reset {
+  border: 2px solid black;
+  padding: 0.5em;
 }

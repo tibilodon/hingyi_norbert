@@ -11,16 +11,26 @@ export async function POST(request: Request) {
   const password = String(formData.get("password"));
   const cookieStore = cookies();
   const supabase = createRouteHandlerClient<Database>({
-    cookies: () => cookieStore,
+    cookies,
   });
 
-  await supabase.auth.signInWithPassword({
+  const { data, error } = await supabase.auth.signInWithPassword({
     email,
     password,
   });
 
-  //  redirect after logged in
-  return NextResponse.redirect(requestUrl.origin + "/cms/login/profile", {
-    status: 301,
-  });
+  if (data) {
+    //  redirect after logged in
+    console.log("authenticated, proceed to login");
+    return NextResponse.redirect(requestUrl.origin + "/cms/login/profile", {
+      status: 301,
+    });
+  }
+  if (error) {
+    //  redirect after logged in
+    console.log("error @ login");
+    return NextResponse.redirect(requestUrl.origin + "/error", {
+      status: 301,
+    });
+  }
 }
