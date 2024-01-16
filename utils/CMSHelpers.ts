@@ -9,6 +9,7 @@ const swapImage = async (
   prevImage: string
 ) => {
   try {
+    console.log("prevImage", prevImage);
     //delete
     let delImgResp;
     if (prevImage) {
@@ -21,9 +22,25 @@ const swapImage = async (
         .from(bucketName)
         .remove([`${removeImage}`]);
       delImgResp = delImg.data;
+
+      //then upload
+
+      const { data, error } = await supabase.storage
+        .from(bucketName)
+        .upload(`/${imageTitle}`, file);
+
+      //  log error if any
+      if (data) {
+        return NextResponse.json(data);
+      }
+      if (error) {
+        console.log("error at file upload", error);
+        return NextResponse.json(error);
+      }
+      //  otherwise, return data
     }
-    //then upload
-    if (delImgResp) {
+    if (!prevImage) {
+      console.log("SAVING IMAGE");
       const { data, error } = await supabase.storage
         .from(bucketName)
         .upload(`/${imageTitle}`, file);

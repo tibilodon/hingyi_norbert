@@ -283,16 +283,7 @@ model users {
   @@schema("auth")
 }
 
-model Owner {
-  id          BigInt   @id @default(autoincrement())
-  created_at  DateTime @default(now()) @db.Timestamptz(6)
-  title       String?
-  user_id     String?  @default(dbgenerated("auth.uid()")) @db.Uuid
-  is_complete Boolean  @default(false)
-  test        String?
 
-  @@schema("public")
-}
 
 model Miscellaneous {
   id         BigInt    @id @default(autoincrement())

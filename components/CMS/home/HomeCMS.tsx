@@ -93,6 +93,7 @@ const HomeCMS: React.FunctionComponent<any> = ({ data, user }) => {
     setIsLoading(true);
     try {
       if (img) {
+        console.log("attempt to swap");
         const saveImg = await swapImage(
           "home",
           supabase,

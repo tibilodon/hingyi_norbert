@@ -247,7 +247,6 @@ const AboutCMS: React.FunctionComponent<Props> = ({
   };
 
   //TODO: DELETE
-  console.log(upperForm);
 
   const upperCardBgImage: React.CSSProperties = {
     backgroundImage: `url(${
@@ -316,7 +315,7 @@ const AboutCMS: React.FunctionComponent<Props> = ({
       }
 
       if (headshotUpdate && upperUpdate && lowerUpdate) {
-        const aboutData = {
+        const newData = {
           ...form,
           image: img.headshot_title || form.image,
           work_card_1_image: img.upperCard_title || form.work_card_1_image,
@@ -324,10 +323,11 @@ const AboutCMS: React.FunctionComponent<Props> = ({
         };
         // TODO: upperform, lowerform, cardforms - use upsert
         //submit then
+        console.log("NEWDATA", newData);
         const dataResp = await fetch("/api/cms/about", {
           method: "PUT",
           body: JSON.stringify({
-            aboutData,
+            newData,
             upperContent,
             upperForm,
             lowerContent,
@@ -376,13 +376,15 @@ const AboutCMS: React.FunctionComponent<Props> = ({
         </span>
         <Divider />
 
-        <Image
-          className={styles.img}
-          src={img.headshot ? URL.createObjectURL(img.headshot) : image!!}
-          alt="head shot image"
-          width={200}
-          height={200}
-        />
+        {image || img.headshot ? (
+          <Image
+            className={styles.img}
+            src={img.headshot ? URL.createObjectURL(img.headshot) : image!!}
+            alt="head shot image"
+            width={200}
+            height={200}
+          />
+        ) : null}
 
         <span>
           <input

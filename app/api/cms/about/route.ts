@@ -9,7 +9,7 @@ export async function PUT(req: Request) {
 
   //TODO: chain resps
   const {
-    aboutData,
+    newData,
     card1Form,
     card_1_data,
     card2Form,
@@ -21,24 +21,67 @@ export async function PUT(req: Request) {
   } = load;
 
   // --About--
+  //handle null image values
+  let headshot;
+  if (newData.image !== null && newData.image.includes("supabase")) {
+    headshot = newData.image;
+  } else if (newData.image === null) {
+    headshot = null;
+  } else {
+    headshot =
+      process.env.NEXT_PUBLIC_SUPABASE_URL +
+      `/storage/v1/object/public/about/${newData.image}`;
+  }
+
+  let upperImage;
+  if (
+    newData.work_card_1_image !== null &&
+    newData.work_card_1_image.includes("supabase")
+  ) {
+    upperImage = newData.work_card_1_image;
+  } else if (newData.work_card_1_image === null) {
+    upperImage = null;
+  } else {
+    upperImage =
+      process.env.NEXT_PUBLIC_SUPABASE_URL +
+      `/storage/v1/object/public/about/${newData.work_card_1_image}`;
+  }
+
+  let lowerImage;
+  if (
+    newData.work_card_2_image !== null &&
+    newData.work_card_2_image.includes("supabase")
+  ) {
+    lowerImage = newData.work_card_2_image;
+  } else if (newData.work_card_2_image === null) {
+    lowerImage = null;
+  } else {
+    lowerImage =
+      process.env.NEXT_PUBLIC_SUPABASE_URL +
+      `/storage/v1/object/public/about/${newData.work_card_2_image}`;
+  }
+  console.log("headshot", headshot);
   const { data: formUpdate, error: formError } = await supabase
     .from("About")
     .update({
-      ...aboutData,
-      image: aboutData.image.includes("supabase")
-        ? aboutData.image
-        : process.env.NEXT_PUBLIC_SUPABASE_URL +
-          `/storage/v1/object/public/about/${aboutData.image}`,
-      work_card_1_image: aboutData.work_card_1_image.includes("supabase")
-        ? aboutData.work_card_1_image
-        : process.env.NEXT_PUBLIC_SUPABASE_URL +
-          `/storage/v1/object/public/about/${aboutData.work_card_1_image}`,
-      work_card_2_image: aboutData.work_card_2_image.includes("supabase")
-        ? aboutData.work_card_2_image
-        : process.env.NEXT_PUBLIC_SUPABASE_URL +
-          `/storage/v1/object/public/about/${aboutData.work_card_2_image}`,
+      ...newData,
+      // image: newData.image.includes("supabase")
+      //   ? newData.image
+      //   : process.env.NEXT_PUBLIC_SUPABASE_URL +
+      //     `/storage/v1/object/public/about/${newData.image}`,
+      image: headshot,
+      // work_card_1_image: newData.work_card_1_image.includes("supabase")
+      //   ? newData.work_card_1_image
+      //   : process.env.NEXT_PUBLIC_SUPABASE_URL +
+      //     `/storage/v1/object/public/about/${newData.work_card_1_image}`,
+      work_card_1_image: upperImage,
+      //   work_card_2_image: newData.work_card_2_image.includes("supabase")
+      //     ? newData.work_card_2_image
+      //     : process.env.NEXT_PUBLIC_SUPABASE_URL +
+      //       `/storage/v1/object/public/about/${newData.work_card_2_image}`,
+      work_card_2_image: lowerImage,
     })
-    .match({ id: aboutData.id })
+    .match({ id: newData.id })
     .select();
 
   if (formError) {

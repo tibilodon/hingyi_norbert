@@ -288,12 +288,14 @@ const PortfolioCMS: React.FunctionComponent<Props> = ({
             ? imagesForm.map(({ id, image, description }, index: number) => {
                 return (
                   <div key={id} className={styles.imgContent}>
-                    <Image
-                      width={200}
-                      height={250}
-                      src={image!!}
-                      alt={`portfolio image number ${index}`}
-                    />
+                    {image && (
+                      <Image
+                        width={200}
+                        height={250}
+                        src={image!!}
+                        alt={`portfolio image number ${index}`}
+                      />
+                    )}
                     <h1
                       contentEditable
                       suppressContentEditableWarning

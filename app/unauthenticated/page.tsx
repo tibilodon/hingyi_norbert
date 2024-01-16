@@ -11,7 +11,7 @@ export default async function Unauthenticated() {
   } = await supabase.auth.getSession();
 
   if (session) {
-    redirect("/test");
+    redirect("/cms/login/profile");
   }
   return (
     <>

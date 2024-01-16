@@ -9,7 +9,7 @@ const CMSSidebar: React.FunctionComponent = () => {
     if (
       !pathname.includes("cms") ||
       pathname.includes("login") ||
-      !pathname.includes("unauthenticated")
+      pathname.includes("unauthenticated")
     ) {
       return `${styles.hide}`;
     } else {

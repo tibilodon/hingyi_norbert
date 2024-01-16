@@ -20,16 +20,6 @@ const UpdatePw: React.FunctionComponent = () => {
   const [password, setPassword] = useState<Password>({ pass1: "", pass2: "" });
   const [show, setShow] = useState<boolean>(false);
 
-  const test = async () => {
-    const { data, error } = await supabase.auth.updateUser({
-      password: "qwertz",
-    });
-    if (error) {
-      console.log(error);
-    } else {
-      console.log(data);
-    }
-  };
   const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
     e.preventDefault();
     const { id, value } = e.currentTarget;
