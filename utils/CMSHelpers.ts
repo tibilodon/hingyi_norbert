@@ -15,9 +15,6 @@ const swapImage = async (
     if (prevImage) {
       const removeImage = prevImage.substring(prevImage.lastIndexOf("/") + 1);
 
-      // const { data: delImage } = await supabase.storage
-      //   .from(bucketName)
-      //   .remove([`${removeImage}`]);
       const delImg = await supabase.storage
         .from(bucketName)
         .remove([`${removeImage}`]);
