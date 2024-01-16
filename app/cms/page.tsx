@@ -7,7 +7,7 @@ export default async function Cms() {
   const session = await supaServerComponentClientSession();
 
   if (!session) {
-    redirect("/");
+    redirect("/unauthenticated");
   }
 
   return (
