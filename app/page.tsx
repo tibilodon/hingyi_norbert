@@ -9,7 +9,9 @@ import { Metadata } from "next";
 import Footer from "@/components/footer/Footer";
 export const metadata: Metadata = {
   title: "Burkoló - Hingyi Norbert",
-  description: "Hingyi Norbert - Burkoló oldala",
+  description: `Hingyi Norbert budapesti hidegburkoló. Szakmájában 2020 óta
+  dolgozik, amely idő alatt számtalan projekten keresztül sokrétű
+  tapasztalatra tett szert.`,
   metadataBase: new URL("https://hingyi-norbert.vercel.app/api/og"),
   openGraph: {
     title: "Burkoló - Hingyi Norbert",
