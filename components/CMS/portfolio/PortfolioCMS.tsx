@@ -336,7 +336,7 @@ const PortfolioCMS: React.FunctionComponent<Props> = ({
                       >
                         {description}
                       </h1>
-                      <h1>Position: </h1>
+                      {/* <h1>Position: </h1>
                       <h1
                         contentEditable
                         suppressContentEditableWarning
@@ -345,7 +345,7 @@ const PortfolioCMS: React.FunctionComponent<Props> = ({
                         style={{ textAlign: "center" }}
                       >
                         {position}
-                      </h1>
+                      </h1> */}
                       <div className={styles.edit}>
                         <span onClick={() => deleteNewImg(fileName)}>
                           {/*TODO:add storage handler*/}
