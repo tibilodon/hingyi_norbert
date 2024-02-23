@@ -43,22 +43,6 @@ export default function About() {
           width={200}
         />
         <div className={styles.content}>
-          {/* <strong>Hingyi Norbertről</strong>
-          <p>
-            Hingyi Norbert egy burkoló aki Budapesten él. Szakmájában 2020 óta
-            dolgozik, amely idő alatt számtalan projekten keresztül sokrétű
-            tapasztalatra tett szert.
-          </p>
-        </div>
-        <div className={styles.content}>
-          <strong>Képesítés</strong>
-          <p>
-            Akkreditált képzését 2019-ben szerezte, amely elvégzése után egy
-            évig gyakornokként szolgált az <strong>XYZ cégnél</strong>,
-            tapasztalatszerzés céljából. A képzés és a gyakornokság időtartama
-            alatt nemcsak az általános, de a dekoratív burkolást is sikerült
-            elsajátítania.
-          </p> */}
           <span className={styles.newContent}>
             <h1>
               Professzionális Hidegburkolás Szolgáltatás Budapesten és Környékén
